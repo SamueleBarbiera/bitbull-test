@@ -1,0 +1,3 @@
+- fix nelle ci/cd envs
+- aggiungi il check delle env ad ogni avvio
+- fai doc per il deploy su aws
