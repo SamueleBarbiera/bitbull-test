@@ -1,32 +1,27 @@
 /** @typedef  {import("prettier").Config} PrettierConfig*/
 /** @typedef  {{ tailwindConfig: string }} TailwindConfig*/
 
-/** @type { PrettierConfig  | TailwindConfig } */
+/** @type PrettierConfig */
 const config = {
-    arrowParens: 'always',
-    printWidth: 80,
+    arrowParens: "always",
+    printWidth: 120,
     singleQuote: false,
     jsxSingleQuote: false,
     semi: true,
-    trailingComma: 'all',
-    tabWidth: 2,
-    plugins: ['@ianvs/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
-    tailwindConfig: './packages/config/tailwind',
-    importOrderTypeScriptVersion: '4.4.0',
+    trailingComma: "all",
+    tabWidth: 4,
+    importOrderTypeScriptVersion: "4.4.0",
     importOrder: [
-        '^(react/(.*)$)|^(react$)|^(react-native(.*)$)',
-        '^(next/(.*)$)|^(next$)',
-        '^(expo(.*)$)|^(expo$)',
-        '<THIRD_PARTY_MODULES>',
-        '',
-        '^@acme/(.*)$',
-        '',
-        '^~/utils/(.*)$',
-        '^~/components/(.*)$',
-        '^~/styles/(.*)$',
-        '^~/(.*)$',
-        '^[./]',
+        "^(react/(.*)$)|^(react$)",
+        "^(next/(.*)$)|^(next$)",
+        "<THIRD_PARTY_MODULES>",
+        "",
+        "^~/utils/(.*)$",
+        "^~/components/(.*)$",
+        "^~/styles/(.*)$",
+        "^~/(.*)$",
+        "^[./]",
     ],
-}
+};
 
-module.exports = config
+module.exports = config;

@@ -1,27 +1,107 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind screens;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 204 68% 45%;
+        --card: 0 0% 100%;
+        --card-foreground: 204 68% 45%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 204 68% 45%;
+        --primary: 204 68% 45%;
+        --primary-foreground: 204 68% 100%;
+        --secondary: 222 38% 95%;
+        --secondary-foreground: 222 38% 95%;
+        --muted: 204, 68%, 45%, 0.5;
+        --muted-foreground: 204, 68%, 45%, 0.5;
+        --accent: 204 40% 96.1%;
+        --accent-foreground: 204 47.4% 11.2%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 204 40% 98%;
+        --border: 204 31.8% 91.4%;
+        --input: 204 31.8% 91.4%;
+        --ring: 204 83.2% 53.3%;
+        --radius: 0.75rem;
+    }
+
+    .dark {
+        --background: 204 68% 45%;
+        --foreground: 204 40% 98%;
+        --card: 204 68% 45%;
+        --card-foreground: 204 40% 98%;
+        --popover: 204 68% 45%;
+        --popover-foreground: 204 40% 98%;
+        --primary: 204 91.2% 59.8%;
+        --primary-foreground: 204 47.4% 11.2%;
+        --secondary: 204 32.6% 17.5%;
+        --secondary-foreground: 204 40% 98%;
+        --muted: 204 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+        --accent: 204 32.6% 17.5%;
+        --accent-foreground: 204 40% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 204 40% 98%;
+        --border: 204 32.6% 17.5%;
+        --input: 204 32.6% 17.5%;
+        --ring: 204 76.3% 48%;
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.page_loader {
+    margin: 100px auto;
+    width: 120px;
+    height: 120px;
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #212121;
+    border-radius: 50%;
+    animation: spin 2s linear infinite, heart-beat 2s linear infinite;
+    background-color: #fff;
+    text-align: center;
+    line-height: 120px;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.loading {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 12px;
+    border: 0.25rem solid rgba(33, 33, 33, 0.3);
+    border-top-color: rgba(33, 33, 33, 1);
+    -webkit-animation: spin 1s infinite linear;
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes heart-beat {
+    55% {
+        background-color: #fff;
+    }
+
+    60% {
+        background-color: #212121;
+    }
+
+    65% {
+        background-color: #fff;
+    }
+
+    70% {
+        background-color: #212121;
+    }
+
+    100% {
+        background-color: #fff;
+    }
 }

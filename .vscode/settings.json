@@ -6,9 +6,12 @@
   "editor.formatOnSave": true,
   "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
   "eslint.workingDirectories": [
-    { "pattern": "src/*/" },
+    { "pattern": "src/**/*" },
   ],
-  "tailwindCSS.experimental.configFile": "./src/tailwind.config.ts",
+  "tailwindCSS.experimental.configFile": "./tailwind.config.ts",
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

@@ -63,5 +63,3 @@ jobs:
                   node-version: 16
             - name: Install dependencies
               run: npm ci
-            - name: Check workspaces
-              run: pnpm manypkg check
