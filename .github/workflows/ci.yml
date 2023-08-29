@@ -9,7 +9,7 @@ on:
 # env:
 
 jobs:
-    build-prod:
+    build-and-test:
         if: github.event.pull_request.merged
         runs-on: ubuntu-latest
 
