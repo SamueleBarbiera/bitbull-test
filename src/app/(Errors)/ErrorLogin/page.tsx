@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
-import { cn } from "../../../lib/utils";
+"use client";
 import { buttonVariants } from "@/components/ui/Button";
+import { cn } from "@/lib/utils";
+import Link from "next/link"
 
 interface IErrorLoginPage {
     isAuth: boolean;
@@ -17,7 +18,7 @@ export default function ErrorLoginPage(props: IErrorLoginPage) {
                         C&apos;è stato un errore, riprova ad accedere al tuo account
                     </p>
                     <Link
-                        to={props.isAuth ? "/Accedi" : "/Report/Dashboard"}
+                        href={props.isAuth ? "/Accedi" : "/Report/Dashboard"}
                         className={cn(
                             buttonVariants({ variant: "default" }),
                             "drop-shadow-md  right-4 top-4 md:right-8 md:top-8",

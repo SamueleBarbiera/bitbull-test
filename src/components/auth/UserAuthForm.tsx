@@ -1,19 +1,20 @@
+"use client";
 import { Input } from "../ui/Input";
 import { Icons } from "../Icons";
 import { z } from "zod";
 import { useUserFetch } from "../../api/hooks/others/auth/user.query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "../ui/form";
 import axios, { AxiosError } from "axios";
 import { Button } from "../ui/Button";
+import { useRouter } from "next/navigation"
 
 export function UserAuthForm() {
     const { mutate: login, isLoading: loading } = useUserFetch().useLoginCreateTokenMutation();
 
-    const router = useNavigate();
+    const router = useRouter();
 
     const FormSchema = z.object({
         email: z.string().email(),
@@ -40,7 +41,7 @@ export function UserAuthForm() {
                 onSuccess: (data: { token: string }) => {
                     if (data.token) {
                         toast.success("Login effettuato con successo");
-                        router("/Report/Dashboard");
+                        router.push("/Report/Dashboard");
                     } else {
                         toast.error("Errore, le tue credenziali non sono corrette");
                     }

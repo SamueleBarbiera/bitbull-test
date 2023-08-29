@@ -3,7 +3,7 @@ import { useSideBarSelectStore } from "../../hooks/store";
 import { useState } from "react";
 import { cn } from "../../lib/utils";
 import { Icons } from "../Icons";
-import { Link, RouteObject } from "react-router-dom";
+import Link from "next/link";
 
 interface ISideBar {
     menuItemsData: MenuItemsData[];
@@ -16,7 +16,7 @@ export default function SideBar({ menuItemsData }: ISideBar) {
     const setSelectedItem = useSideBarSelectStore((state) => state.setSelectedItem);
     const [isRotated, setIsRotated] = useState(false);
 
-    const onItemClick = (item: RouteObject["path"]) => {
+    const onItemClick = (item: string | undefined) => {
         setSelectedItem(item ?? "");
     };
 
@@ -51,7 +51,7 @@ export default function SideBar({ menuItemsData }: ISideBar) {
                             {/* Dropdown items */}
                             {dropdownData.route.map((routeItem, idx) => {
                                 return (
-                                    <Link key={idx} onClick={() => onItemClick(routeItem.path)} to={routeItem.path}>
+                                    <Link key={idx} onClick={() => onItemClick(routeItem.path)} href={routeItem.path}>
                                         <div
                                             key={idx}
                                             className={cn(

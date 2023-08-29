@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
-import { cn } from "../../../lib/utils";
-import { buttonVariants } from "@/components/ui/Button"
+"use client";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/Button";
+import Link from "next/link";
 
 interface IErrorPage {
     isAuth: boolean;
 }
 
-export default function ErrorPage(props : IErrorPage) {
+export default function ErrorPage(props: IErrorPage) {
     return (
         <section className="bg-white dark:bg-sky-900 ">
             <div className="container flex justify-center items-center min-h-screen px-6 py-12 mx-auto">
@@ -19,7 +20,7 @@ export default function ErrorPage(props : IErrorPage) {
                         C&apos;è stato un errore, riprova più tardi
                     </p>
                     <Link
-                        to={props.isAuth ? "/Accedi" : "/Report/Dashboard"}
+                        href={props.isAuth ? "/Accedi" : "/Report/Dashboard"}
                         className={cn(
                             buttonVariants({ variant: "default" }),
                             "drop-shadow-md  right-4 top-4 md:right-8 md:top-8",

@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+"use client";
 import { UserAuthForm } from "@/components/auth/UserAuthForm";
 import { buttonVariants } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import Link from "next/link"
 
 
 
@@ -10,7 +11,7 @@ export default function SignIn() {
         <>
             <div className="container  h-screen flex flex-row items-center justify-center max-w-full ">
                 <Link
-                    to="/Registrazione"
+                    href={"/Registrazione"}
                     className={cn(
                         buttonVariants({ variant: "default" }),
                         "drop-shadow-md absolute right-4 top-4 md:right-8 md:top-8",
@@ -30,11 +31,11 @@ export default function SignIn() {
                         <UserAuthForm />
                         <p className="px-8 text-center text-sm ">
                             Continuando, accetterai i nostri{" "}
-                            <Link to="/terms" className="underline underline-offset-4 hover:text-primary">
+                            <Link href={"/terms"} className="underline underline-offset-4 hover:text-primary">
                                 Terms of Service
                             </Link>{" "}
                             and{" "}
-                            <Link to="/privacy" className="underline underline-offset-4 hover:text-primary">
+                            <Link href={"/privacy"} className="underline underline-offset-4 hover:text-primary">
                                 Privacy Policy
                             </Link>
                             .

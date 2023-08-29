@@ -1,11 +1,11 @@
-/* eslint-env node */
-
 module.exports = {
     env: {
         node: true,
         es2022: true,
     },
     extends: [
+        "next",
+        "plugin:@next/next/recommended",
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended-type-checked",
         "plugin:@typescript-eslint/stylistic-type-checked",
@@ -34,12 +34,17 @@ module.exports = {
     parser: "@typescript-eslint/parser",
 
     parserOptions: {
-        ecmaVersion: "latest",
+        ecmaFeatures: {
+            jsx: true,
+        },
+        ecmaVersion: 12,
         sourceType: "module",
-        project: ["./tsconfig.json"],
+        // project: 'tsconfig.json',
+        tsconfigRootDir: __dirname,
+        project: "tsconfig.json",
     },
     plugins: ["@typescript-eslint", "react", "react-hooks", "@tanstack/query"],
-    ignorePatterns: [".eslintrc.cjs", "*.config.ts"],
+    ignorePatterns: [".eslintrc.cjs", "*.config.ts", ".next/**/*", "node_modules/**/*"],
     rules: {
         "react/display-name": 2,
         "@typescript-eslint/unbound-method": [

@@ -1,8 +1,9 @@
-import { useLogoutMutation } from '@/api/auth/auth.query'
+"use client";
+import { useLogoutMutation } from "@/api/auth/auth.query";
 import { Icons } from "@/components/Icons";
 import { Button } from "@/components/ui/Button";
 
-export default function UserPage( ) {
+export default function UserPage() {
     const { mutate: logout } = useLogoutMutation();
     return (
         <Button variant="default" onClick={() => logout()}>

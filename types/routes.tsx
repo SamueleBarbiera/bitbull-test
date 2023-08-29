@@ -1,7 +1,7 @@
+"use client";
 import { Icons } from "../src/components/Icons";
 import IndexPage from "../src/app/(SectionPages)/page";
-import { IndexRouteObject, NonIndexRouteObject } from "react-router-dom";
-import React from "react";
+import * as React from "react";
 
 const PATHS = [
     {
@@ -30,16 +30,18 @@ type AllowedElementNames = RemoveParentRoute<URoutePath>;
 // Create a type that expects JSX elements with the specified names
 type CustomElement = React.JSX.Element & { type: { displayName: AllowedElementNames } };
 
-type IndexesRouteObject = IndexRouteObject | NonIndexRouteObject;
-type RouteObject = { element: CustomElement; path: URoutePath } & IndexesRouteObject;
+interface RouteObject {
+    element: CustomElement;
+    path: URoutePath;
+}
 
-export type MenuItemsData = {
+export interface MenuItemsData {
     id: number;
     btnIcon: React.JSX.Element;
     label: string;
     route: RouteObject[];
     values: string[];
-};
+}
 
 export const menuItemsData: MenuItemsData[] = [
     {

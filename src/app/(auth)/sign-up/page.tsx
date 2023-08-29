@@ -1,14 +1,15 @@
-import { Link } from "react-router-dom";
+"use client";
 import { cn } from "@/lib/utils";
 import UserRegistrationForm from "@/components/auth/UserRegistrationForm";
 import { buttonVariants } from "@/components/ui/Button"
+import Link from "next/link"
 
 export default function SignUp() {
     return (
         <>
             <div className="container  h-screen flex flex-row items-center justify-center max-w-full ">
                 <Link
-                    to="/Accedi"
+                    href={"/Accedi"}
                     className={cn(buttonVariants({ variant: "default" }), "absolute right-4 top-4 md:right-8 md:top-8")}
                 >
                     Accedi
@@ -23,11 +24,11 @@ export default function SignUp() {
                         <UserRegistrationForm />
                         <p className="px-8 text-center text-sm text-muted-foreground">
                             Continuando, accetterai i nostri{" "}
-                            <Link to="/terms" className="underline underline-offset-4 hover:text-primary">
+                            <Link href={"/terms"} className="underline underline-offset-4 hover:text-primary">
                                 Terms of Service
                             </Link>{" "}
                             e{" "}
-                            <Link to="/privacy" className="underline underline-offset-4 hover:text-primary">
+                            <Link href={"/privacy"} className="underline underline-offset-4 hover:text-primary">
                                 Privacy Policy
                             </Link>
                             .

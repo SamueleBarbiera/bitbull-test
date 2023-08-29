@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useNavigate } from "react-router-dom";
 import { useUserFetch } from "../../api/hooks/others/auth/user.query";
 import { Input } from "../ui/Input";
 import { Button } from "../ui/Button";
@@ -9,6 +8,7 @@ import { Icons } from "../Icons";
 import { toast } from "react-hot-toast";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "../ui/form";
 import axios, { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
 const UserRegistrationForm = () => {
     const { mutate: registerUser, isLoading: loading } = useUserFetch().useRegisterMutation();
@@ -32,7 +32,7 @@ const UserRegistrationForm = () => {
         },
     });
 
-    const router = useNavigate();
+    const router = useRouter();
 
     function onSubmit({ name, email, password }: z.infer<typeof FormSchema>) {
         registerUser(
@@ -44,9 +44,8 @@ const UserRegistrationForm = () => {
             {
                 onSuccess: (data: { token: string }) => {
                     if (data.token) {
-                            toast.success("Ti sei registrato con successo!");
-                            router("/Report/Dashboard");
-                            return;
+                        toast.success("Ti sei registrato con successo!");
+                        router.push("/Report/Dashboard");
                     } else {
                         toast.error("Errore, le tue credenziali non sono corrette");
                     }
