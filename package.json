@@ -10,7 +10,7 @@
         "lint:check": "next lint --fix && tsc --noEmit",
         "clean": "git clean -xdf node_modules dist .next",
         "release": "pnpm lint:check  && pnpm build && changeset publish",
-        "commit": "pnpm lint:check && git add . && git cz && lint-staged && git push --all && git fetch --all"
+        "commit": "pnpm lint:check && git add . && git cz && lint-staged && git pull && git push --all"
     },
     "dependencies": {
         "@hookform/resolvers": "^3.3.1",
