@@ -18,7 +18,6 @@
 (Una volta completato, inviaci il link al repository a job@bitbull.it)
 
 ## DETTAGLI DI INTEGRAZIONE
-
 Per recuperare i dati di catalogo potrai utilizzare una delle seguenti modalità:
 
 -   La lista delle Collection: https://4ilk3v7wbk.execute-api.eu-west-1.amazonaws.com/dev/collection_listings.json

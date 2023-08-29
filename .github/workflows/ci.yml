@@ -5,18 +5,12 @@ on:
         branches: ["*"]
     push:
         branches: ["main"]
-    merge_group:
 
-# You can leverage Vercel Remote Caching with Turbo to speed up your builds
-# @link https://turborepo.org/docs/core-concepts/remote-caching#remote-caching-on-vercel-builds
-env:
-    TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-    TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+# env:
 
 jobs:
-    build-lint:
-        env:
-            DATABASE_URL: file:./db.sqlite
+    build-prod:
+        if: github.event.pull_request.merged
         runs-on: ubuntu-latest
 
         steps:
@@ -45,9 +39,19 @@ jobs:
                       ${{ runner.os }}-pnpm-store-
 
             - name: Install deps (with cache)
-              run: pnpm install
+              run: pnpm install --frozen-lockfile
 
-            - run: cp .env.example .env.local
+            - name: Next.js cache
+              uses: actions/cache@v3
+              with:
+                  path: ${{ github.workspace }}.next/cache
+                  key: ${{ runner.os }}-${{ runner.node }}-${{ hashFiles('**/pnpm-lock.yaml') }}-web
 
-            - name: Build, lint and type-check
-              run: pnpm turbo build lint type-check
+            - name: Build, lint, type-check and test
+              run: pnpm build lint type-check
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+            - name: Install dependencies
+              run: npm ci
