@@ -1,8 +1,8 @@
 "use client";
 import { cn } from "@/lib/utils";
 import UserRegistrationForm from "@/components/auth/UserRegistrationForm";
-import { buttonVariants } from "@/components/ui/Button"
-import Link from "next/link"
+import { buttonVariants } from "@components/ui/button";
+import Link from "next/link";
 
 export default function SignUp() {
     return (

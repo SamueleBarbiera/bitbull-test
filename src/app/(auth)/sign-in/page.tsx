@@ -1,10 +1,8 @@
 "use client";
 import { UserAuthForm } from "@/components/auth/UserAuthForm";
-import { buttonVariants } from "@/components/ui/Button";
+import { buttonVariants } from "@components/ui/button";
 import { cn } from "@/lib/utils";
-import Link from "next/link"
-
-
+import Link from "next/link";
 
 export default function SignIn() {
     return (
@@ -24,9 +22,7 @@ export default function SignIn() {
                     <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px] rounded-2xl border-2 py-14 px-8 outline-1 outline-gray-300">
                         <div className="flex flex-col space-y-2 text-center">
                             <h1 className="text-2xl font-semibold tracking-tight ">Accedi</h1>
-                            <p className="text-sm ">
-                                Inserisci la tua email per fare l&apos;accesso
-                            </p>
+                            <p className="text-sm ">Inserisci la tua email per fare l&apos;accesso</p>
                         </div>
                         <UserAuthForm />
                         <p className="px-8 text-center text-sm ">

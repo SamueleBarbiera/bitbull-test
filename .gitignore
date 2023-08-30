@@ -36,3 +36,7 @@ next-env.d.ts
 .env
 
 todo.md
+thunder-tests/thunderActivity.json
+thunder-tests/thunderclient.json
+thunder-tests/thunderCollection.json
+thunder-tests/thunderEnvironment.json

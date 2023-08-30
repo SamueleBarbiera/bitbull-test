@@ -1,7 +1,7 @@
 "use client";
 import { useLogoutMutation } from "@/api/auth/auth.query";
-import { Icons } from "@/components/Icons";
-import { Button } from "@/components/ui/Button";
+import { Icons } from "@/components/icons";
+import { Button } from "@components/ui/button";
 
 export default function UserPage() {
     const { mutate: logout } = useLogoutMutation();

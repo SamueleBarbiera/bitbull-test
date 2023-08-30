@@ -1,4 +1,5 @@
-module.exports = {
+/** @type {import("eslint").Linter.Config} */
+const config = {
     env: {
         node: true,
         es2022: true,
@@ -34,6 +35,7 @@ module.exports = {
     parser: "@typescript-eslint/parser",
 
     parserOptions: {
+        project: true,
         ecmaFeatures: {
             jsx: true,
         },
@@ -41,7 +43,6 @@ module.exports = {
         sourceType: "module",
         // project: 'tsconfig.json',
         tsconfigRootDir: __dirname,
-        project: "tsconfig.json",
     },
     plugins: ["@typescript-eslint", "react", "react-hooks", "@tanstack/query"],
     ignorePatterns: [".eslintrc.cjs", "*.config.ts", ".next/**/*", "node_modules/**/*"],
@@ -78,3 +79,5 @@ module.exports = {
         "react/prop-types": "off",
     },
 };
+
+module.exports = config;

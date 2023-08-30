@@ -35,13 +35,7 @@ type HttpInstanceStructure<D = unknown> =
 export type HttpInstanceType<D> = HttpInstanceStructure<D> & { genericPath: string };
 
 const httpInstance = axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
-    timeout: 5000,
-    headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-    },
+    timeout: 3000,
 });
 
 httpInstance.interceptors.request.use(
@@ -57,6 +51,7 @@ httpInstance.interceptors.request.use(
 );
 
 export const httpCall = async <T, D = null>(state: HttpInstanceType<D>): Promise<T> => {
+    console.log("🚀 - file: index.ts:60 - httpCall - state:", { state });
     let data: T;
     switch (state.type) {
         case "getByID":

@@ -1,3 +1,65 @@
+"use client";
+
+import {
+    AlarmClock,
+    AlertTriangle,
+    ArrowDown,
+    ArrowUp,
+    BarChart3,
+    CalendarDays,
+    Check,
+    ChevronDown,
+    ChevronLeft,
+    ChevronRight,
+    ChevronsLeft,
+    ChevronsRight,
+    ChevronsUpDown,
+    ChevronUp,
+    Circle,
+    Copy,
+    CreditCard,
+    Crop,
+    DollarSign,
+    Download,
+    Edit,
+    Eye,
+    EyeOff,
+    FileTerminal,
+    Filter,
+    Footprints,
+    HardHat,
+    Image,
+    Loader2,
+    LogOut,
+    Menu,
+    MessageSquare,
+    Minus,
+    Moon,
+    MoreHorizontal,
+    MoreVertical,
+    Package,
+    Plus,
+    PlusCircle,
+    RefreshCw,
+    Search,
+    Send,
+    Settings,
+    Shirt,
+    ShoppingBag,
+    ShoppingCart,
+    Sliders,
+    SlidersHorizontal,
+    Star,
+    SunMedium,
+    Trash,
+    Twitter,
+    UploadCloud,
+    User,
+    Volume2,
+    VolumeX,
+    Wallet,
+    X,
+} from "lucide-react";
 import { SVGProps } from "react";
 
 type SVGAttributes = Partial<SVGProps<SVGSVGElement>>;
@@ -26,6 +88,91 @@ const mergeProps = (iconName: string, props: IconsProps) => ({
 });
 
 export const Icons = {
+    sun: SunMedium,
+    moon: Moon,
+    star: Star,
+    twitter: Twitter,
+    close: X,
+    spinner: Loader2,
+    chevronLeft: ChevronLeft,
+    chevronRight: ChevronRight,
+    chevronsLeft: ChevronsLeft,
+    chevronsRight: ChevronsRight,
+    chevronUp: ChevronUp,
+    chevronDown: ChevronDown,
+    chevronUpDown: ChevronsUpDown,
+    arrowUp: ArrowUp,
+    arrowDown: ArrowDown,
+    menu: Menu,
+    verticalThreeDots: MoreVertical,
+    horizontalThreeDots: MoreHorizontal,
+    verticalSliders: Sliders,
+    horizontalSliders: SlidersHorizontal,
+    circle: Circle,
+    check: Check,
+    add: Plus,
+    addCircle: PlusCircle,
+    remove: Minus,
+    view: Eye,
+    hide: EyeOff,
+    trash: Trash,
+    edit: Edit,
+    crop: Crop,
+    reset: RefreshCw,
+    send: Send,
+    copy: Copy,
+    downlaod: Download,
+    warning: AlertTriangle,
+    search: Search,
+    filter: Filter,
+    alarm: AlarmClock,
+    calendar: CalendarDays,
+    user: User,
+    terminal: FileTerminal,
+    settings: Settings,
+    logout: LogOut,
+    volumne: Volume2,
+    volumneMute: VolumeX,
+    message: MessageSquare,
+    billing: CreditCard,
+    wallet: Wallet,
+    dollarSign: DollarSign,
+    cart: ShoppingCart,
+    product: Package,
+    store: ShoppingBag,
+    chart: BarChart3,
+    upload: UploadCloud,
+    placeholder: Image,
+    clothing: Shirt,
+    shoes: Footprints,
+    accessories: HardHat,
+
+    nextjs: (props: IconsProps) => (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+            <path
+                fill="currentColor"
+                d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 0 1-.364.033C7.443.346 4.25 2.185 2.228 5.012a11.875 11.875 0 0 0-2.119 5.243c-.096.659-.108.854-.108 1.747s.012 1.089.108 1.748c.652 4.506 3.86 8.292 8.209 9.695.779.25 1.6.422 2.534.525.363.04 1.935.04 2.299 0 1.611-.178 2.977-.577 4.323-1.264.207-.106.247-.134.219-.158-.02-.013-.9-1.193-1.955-2.62l-1.919-2.592-2.404-3.558a338.739 338.739 0 0 0-2.422-3.556c-.009-.002-.018 1.579-.023 3.51-.007 3.38-.01 3.515-.052 3.595a.426.426 0 0 1-.206.214c-.075.037-.14.044-.495.044H7.81l-.108-.068a.438.438 0 0 1-.157-.171l-.05-.106.006-4.703.007-4.705.072-.092a.645.645 0 0 1 .174-.143c.096-.047.134-.051.54-.051.478 0 .558.018.682.154.035.038 1.337 1.999 2.895 4.361a10760.433 10760.433 0 0 0 4.735 7.17l1.9 2.879.096-.063a12.317 12.317 0 0 0 2.466-2.163 11.944 11.944 0 0 0 2.824-6.134c.096-.66.108-.854.108-1.748 0-.893-.012-1.088-.108-1.747-.652-4.506-3.859-8.292-8.208-9.695a12.597 12.597 0 0 0-2.499-.523A33.119 33.119 0 0 0 11.573 0zm4.069 7.217c.347 0 .408.005.486.047a.473.473 0 0 1 .237.277c.018.06.023 1.365.018 4.304l-.006 4.218-.744-1.14-.746-1.14v-3.066c0-1.982.01-3.097.023-3.15a.478.478 0 0 1 .233-.296c.096-.05.13-.054.5-.054z"
+            />
+        </svg>
+    ),
+    gitHub: (props: IconsProps) => (
+        <svg viewBox="0 0 438.549 438.549" {...props}>
+            <path
+                fill="currentColor"
+                d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.859 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z"
+            ></path>
+        </svg>
+    ),
+    logo: (props: IconsProps) => (
+        <svg width="512" height="512" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" {...props}>
+            <path
+                fill="#000000"
+                fillRule="evenodd"
+                d="M6.229.199a8 8 0 0 1 9.727 6.964a.75.75 0 0 1-1.492.157a6.5 6.5 0 1 0-7.132 7.146a.75.75 0 1 1-.154 1.492a8 8 0 0 1-.95-15.76Zm5.051 10.02a.75.75 0 1 0-1.06 1.061L11.94 13l-1.72 1.72a.75.75 0 1 0 1.06 1.06L13 14.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L14.06 13l1.72-1.72a.75.75 0 1 0-1.06-1.06L13 11.94l-1.72-1.72Zm.25-3.939a.75.75 0 0 0-1.06-1.06L6.5 9.19L5.28 7.97a.75.75 0 0 0-1.06 1.06l1.75 1.75a.75.75 0 0 0 1.06 0l4.5-4.5Z"
+                clipRule="evenodd"
+            />
+        </svg>
+    ),
     Calendar: (props: IconsProps) => (
         <svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -89,16 +236,6 @@ export const Icons = {
             />
         </svg>
     ),
-    EyeNone: (props: IconsProps) => (
-        <svg {...props} width="512" height="512" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill="#000000"
-                fillRule="evenodd"
-                d="M13.354 2.354a.5.5 0 0 0-.708-.708L10.683 3.61A8.475 8.475 0 0 0 7.5 3C4.308 3 1.656 4.706.076 7.235a.5.5 0 0 0 0 .53c.827 1.323 1.947 2.421 3.285 3.167l-1.715 1.714a.5.5 0 0 0 .708.708l1.963-1.964c.976.393 2.045.61 3.183.61c3.192 0 5.844-1.706 7.424-4.235a.5.5 0 0 0 0-.53c-.827-1.323-1.947-2.421-3.285-3.167l1.715-1.714Zm-3.45 2.035A7.517 7.517 0 0 0 7.5 4C4.803 4 2.53 5.378 1.096 7.5c.777 1.15 1.8 2.081 3.004 2.693L9.904 4.39ZM5.096 10.61L10.9 4.807c1.204.612 2.227 1.543 3.004 2.693C12.47 9.622 10.197 11 7.5 11a7.518 7.518 0 0 1-2.404-.389Z"
-                clipRule="evenodd"
-            />
-        </svg>
-    ),
     ArrowUp: (props: IconsProps) => (
         <svg {...props} width="288" height="512" viewBox="0 0 9 16" xmlns="http://www.w3.org/2000/svg">
             <path fill="#000000" d="M4.5 14c-.28 0-.5-.22-.5-.5v-9c0-.28.22-.5.5-.5s.5.22.5.5v9c0 .28-.22.5-.5.5Z" />
@@ -115,21 +252,6 @@ export const Icons = {
                 fill="#000000"
                 d="M4.5 14a.47.47 0 0 1-.35-.15l-3.5-3.5c-.2-.2-.2-.51 0-.71c.2-.2.51-.2.71 0l3.15 3.15l3.15-3.15c.2-.2.51-.2.71 0c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z"
             />
-        </svg>
-    ),
-    mixer: (props: IconsProps) => (
-        <svg {...props} width="512" height="512" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fill="#000000"
-                fillRule="evenodd"
-                d="M5.5 3a1.5 1.5 0 1 0 0 3a1.5 1.5 0 0 0 0-3ZM3 5c.017 0 .033 0 .05-.002a2.5 2.5 0 0 0 4.9 0A.507.507 0 0 0 8 5h5.5a.5.5 0 0 0 0-1H8c-.017 0-.033 0-.05.002a2.5 2.5 0 0 0-4.9 0A.507.507 0 0 0 3 4H1.5a.5.5 0 0 0 0 1H3Zm8.95 5.998a2.5 2.5 0 0 1-4.9 0A.507.507 0 0 1 7 11H1.5a.5.5 0 0 1 0-1H7c.017 0 .033 0 .05.002a2.5 2.5 0 0 1 4.9 0A.506.506 0 0 1 12 10h1.5a.5.5 0 0 1 0 1H12c-.017 0-.033 0-.05-.002ZM8 10.5a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0Z"
-                clipRule="evenodd"
-            />
-        </svg>
-    ),
-    close: (props: IconsProps) => (
-        <svg {...props} width="512" height="512" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
-            <path fill="none" stroke="#000000" strokeLinecap="round" strokeLinejoin="round" d="m7.5 7.5l6 6m0-6l-6 6" />
         </svg>
     ),
     selected: (props: IconsProps) => (
@@ -167,155 +289,6 @@ export const Icons = {
             </g>
         </svg>
     ),
-    add: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-plus w-4 h-4 ", props)}>
-            <path d="M5 12h14" />
-            <path d="M12 5v14" />
-        </svg>
-    ),
-    attach: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-paperclip", props)} width="16" height="16">
-            <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"
-            />
-        </svg>
-    ),
-    delete: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-trash-2", props)} width="16" height="16">
-            <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M3 6h18m-2 0v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6m3 0V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2m-6 5v6m4-6v6"
-            />
-        </svg>
-    ),
-    download: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-file-down", props)} width="16" height="16">
-            <g strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                <path d="M14 2v6h6m-8 10v-6m-3 3l3 3l3-3" />
-            </g>
-        </svg>
-    ),
-    edit: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-pencil", props)} width="16" height="16">
-            <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5L2 22l1.5-5.5Zm-2 2l4 4"
-            />
-        </svg>
-    ),
-    file: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-file-text", props)} width="16" height="16">
-            <g strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                <path d="M14 2v6h6m-4 5H8m8 4H8m2-8H8" />
-            </g>
-        </svg>
-    ),
-    mail: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-mail", props)} width="16" height="16">
-            <g strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                <rect width="20" height="16" x="2" y="4" rx="2" />
-                <path d="m22 7l-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-            </g>
-        </svg>
-    ),
-    sdi: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-landmark", props)} width="16" height="16">
-            <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M3 22h18M6 18v-7m4 7v-7m4 7v-7m4 7v-7m-6-9l8 5H4z"
-            />
-        </svg>
-    ),
-    spinner: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-loader-2", props)}>
-            <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-        </svg>
-    ),
-    moreMenu: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-more-horizontal", props)}>
-            <circle cx="12" cy="12" r="1" />
-            <circle cx="19" cy="12" r="1" />
-            <circle cx="5" cy="12" r="1" />
-        </svg>
-    ),
-    sorting: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-arrow-down-up", props)} width="16" height="16">
-            <path d="m3 16 4 4 4-4" />
-            <path d="M7 20V4" />
-            <path d="m21 8-4-4-4 4" />
-            <path d="M17 4v16" />
-        </svg>
-    ),
-    datiesterni: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-undo-2", props)}>
-            <path d="M9 14 4 9l5-5" />
-            <path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11" />
-        </svg>
-    ),
-    report: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-bar-chart-2", props)}>
-            <line x1="18" x2="18" y1="20" y2="10" />
-            <line x1="12" x2="12" y1="20" y2="4" />
-            <line x1="6" x2="6" y1="20" y2="14" />
-        </svg>
-    ),
-    timeSheet: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-grip", props)}>
-            <circle cx="12" cy="5" r="1" />
-            <circle cx="19" cy="5" r="1" />
-            <circle cx="5" cy="5" r="1" />
-            <circle cx="12" cy="12" r="1" />
-            <circle cx="19" cy="12" r="1" />
-            <circle cx="5" cy="12" r="1" />
-            <circle cx="12" cy="19" r="1" />
-            <circle cx="19" cy="19" r="1" />
-            <circle cx="5" cy="19" r="1" />
-        </svg>
-    ),
-    fattura: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-file", props)}>
-            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-            <polyline points="14 2 14 8 20 8" />
-        </svg>
-    ),
-    scandenze: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-calendar-check", props)}>
-            <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
-            <line x1="16" x2="16" y1="2" y2="6" />
-            <line x1="8" x2="8" y1="2" y2="6" />
-            <line x1="3" x2="21" y1="10" y2="10" />
-            <path d="m9 16 2 2 4-4" />
-        </svg>
-    ),
-    anagrafiche: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-folder", props)}>
-            <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
-        </svg>
-    ),
-    user: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-users-2", props)}>
-            <path d="M14 19a6 6 0 0 0-12 0" />
-            <circle cx="8" cy="9" r="4" />
-            <path d="M22 19a6 6 0 0 0-6-6 4 4 0 1 0 0-8" />
-        </svg>
-    ),
-    settings: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-settings", props)}>
-            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-            <circle cx="12" cy="12" r="3" />
-        </svg>
-    ),
     info: (props: IconsProps) => (
         <svg {...mergeProps("lucide-info", props)}>
             <circle cx="12" cy="12" r="10" />
@@ -326,20 +299,6 @@ export const Icons = {
     dropdown: (props: IconsProps) => (
         <svg {...mergeProps("lucide-chevron-down", props)}>
             <path d="m6 9 6 6 6-6" />
-        </svg>
-    ),
-    menu: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-menu", props)}>
-            <line x1="4" x2="20" y1="12" y2="12" />
-            <line x1="4" x2="20" y1="6" y2="6" />
-            <line x1="4" x2="20" y1="18" y2="18" />
-        </svg>
-    ),
-    logout: (props: IconsProps) => (
-        <svg {...mergeProps("lucide-log-out", props)}>
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-            <polyline points="16 17 21 12 16 7" />
-            <line x1="21" x2="9" y1="12" y2="12" />
         </svg>
     ),
 };

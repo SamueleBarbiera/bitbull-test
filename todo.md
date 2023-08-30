@@ -1,6 +1,6 @@
 # todo miei
 
--   ci/cd con deploy su aws amplify 
+-   testa dockerfile
 -   aggiungi il check delle env ad ogni avvio
 -   metti il loading state con ombreggiatura sulla sezione dei prodotti
 -   metti docs con github copilot (spiega i generics nella sezione di routes e i vari componenti per il layout ecc)
