@@ -16,10 +16,10 @@ interface ILayout {
 
 export default function RootLayout({ children }: ILayout) {
     return (
-        <html lang="it">
-            <Providers>
-                <body className={inter.className}>{children}</body>
-            </Providers>
+        <html lang="it" suppressHydrationWarning={true}>
+            <body suppressHydrationWarning={true} className={inter.className}>
+                <Providers> {children} </Providers>
+            </body>
         </html>
     );
 }

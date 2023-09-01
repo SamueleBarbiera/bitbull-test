@@ -139,7 +139,6 @@ export const Icons = {
     dollarSign: DollarSign,
     cart: ShoppingCart,
     product: Package,
-    store: ShoppingBag,
     chart: BarChart3,
     upload: UploadCloud,
     placeholder: Image,

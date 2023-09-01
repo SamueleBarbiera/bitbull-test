@@ -23,7 +23,7 @@ interface ShellProps
   as?: React.ElementType
 }
 
-function Shell({
+function Container({
   className,
   as: Comp = "section",
   variant,
@@ -34,4 +34,4 @@ function Shell({
   )
 }
 
-export { Shell, shellVariants }
+export { Container, shellVariants }

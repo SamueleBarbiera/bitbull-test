@@ -1,4 +1,8 @@
 export interface CollectionListingAll {
+    collection_listings: CollectionListingData[];
+}
+
+export interface CollectionListingData {
     collection_id: number;
     updated_at: Date;
     body_html: string;

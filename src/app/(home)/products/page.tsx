@@ -1,38 +1,21 @@
-import { type Metadata } from "next";
-
-import { env } from "@/env.mjs";
-
+"use client";
 import { PageHeader, PageHeaderDescription, PageHeaderHeading } from "@/components/page-header";
 import { Products } from "@/components/products";
-import { Shell } from "@/components/shells/shell";
-import { AllProducts } from "@/lib/utils";
-
-export const metadata: Metadata = {
-    title: "Products",
-    description: "Buy products from our stores",
-};
+import { Container } from "@/components/shells/shell";
+import { useCollectionListingFetch } from "@/api/products/collection.listing.query";
 
 interface ProductsPageProps {
     searchParams: Record<string, string | string[] | undefined>;
 }
 
-export default async function ProductsPage({ searchParams }: ProductsPageProps) {
-    const { page, per_page, sort, categories, subcategories, price_range, store_ids, store_page } = searchParams ?? {};
-
-    // Products transaction
+export default function ProductsPage({ searchParams }: ProductsPageProps) {
+    const { per_page } = searchParams ?? {};
     const limit = typeof per_page === "string" ? parseInt(per_page) : 8;
-    const offset = typeof page === "string" ? (parseInt(page) - 1) * limit : 0;
-
-    const productsTransaction = AllProducts;
-
-    const pageCount = Math.ceil(productsTransaction.collection_listings.length / limit);
-
-    // Stores transaction
-    const storesLimit = 25;
-    const storesOffset = typeof store_page === "string" ? (parseInt(store_page) - 1) * storesLimit : 0;
+    const { data: productsTransaction } = useCollectionListingFetch().useGetAllCollectionListing();
+    const pageCount = productsTransaction ? Math.ceil(productsTransaction.collection_listings.length / limit) : null;
 
     return (
-        <Shell>
+        <Container>
             <PageHeader id="products-page-header" aria-labelledby="products-page-header-heading">
                 <PageHeaderHeading size="sm">Products</PageHeaderHeading>
                 <PageHeaderDescription size="sm">Buy products from our stores</PageHeaderDescription>
@@ -40,10 +23,10 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
             <Products
                 id="products-page-products"
                 aria-labelledby="products-page-products-heading"
-                products={productsTransaction.collection_listings}
-                pageCount={pageCount}
+                products={productsTransaction ?? { collection_listings: [] }}
+                pageCount={pageCount ?? 0}
                 categories={[""]}
             />
-        </Shell>
+        </Container>
     );
 }

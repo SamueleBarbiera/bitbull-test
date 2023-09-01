@@ -1,18 +1,20 @@
-import Image from "next/image";
+"use client";
 import Link from "next/link";
-import { AllProducts, cn } from "@/lib/utils";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { ProductCard } from "@/components/cards/product-card";
-import { Shell } from "@/components/shells/shell";
+import { Container } from "@/components/shells/shell";
+import { useCollectionListingFetch } from "@/api/products/collection.listing.query";
+import { LoadingProductCard } from "@/components/cards/loading-product-card";
 
 export const dynamic = "force-dynamic";
 
-export default async function IndexPage() {
-    const someProducts = AllProducts;
+export default function IndexPage() {
+    const { data: someProducts, isLoading } = useCollectionListingFetch().useGetAllCollectionListing();
+    console.log("🚀 - file: page.tsx:13 - IndexPage - someProducts:", someProducts);
 
     return (
-        <Shell className="gap-12">
+        <Container className="gap-12">
             <section
                 id="hero"
                 aria-labelledby="hero-heading"
@@ -22,20 +24,12 @@ export default async function IndexPage() {
                     A Fake E-Commerce site built with Next.js 13
                 </h1>
                 <div className="max-w-[46rem] text-lg text-muted-foreground sm:text-xl">
-                    Buy products from brands and stores around the world
+                    Buy products from brands around the world
                 </div>
                 <div className="flex flex-wrap items-center justify-center gap-4">
                     <Link href="/products" className={cn(buttonVariants())}>
                         Buy Now
                     </Link>
-                </div>
-            </section>
-            <section id="categories" aria-labelledby="categories-heading" className="space-y-6 py-6 md:pt-10 lg:pt-24">
-                <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
-                    <h2 className="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-5xl">Categories</h2>
-                    <div className="max-w-[46rem] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-                        Explore our categories and find the best products for you
-                    </div>
                 </div>
             </section>
 
@@ -55,11 +49,17 @@ export default async function IndexPage() {
                     </Link>
                 </div>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {someProducts.collection_listings.map((product) => (
-                        <ProductCard key={product.collection_id} product={product} />
-                    ))}
+                    {!isLoading ? (
+                        <>
+                            {someProducts?.collection_listings.map((product) => (
+                                <ProductCard key={product.collection_id} product={product} />
+                            ))}
+                        </>
+                    ) : (
+                        <LoadingProductCard />
+                    )}
                 </div>
             </section>
-        </Shell>
+        </Container>
     );
 }

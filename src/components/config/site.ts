@@ -25,18 +25,6 @@ export const siteConfig = {
                     description: "All the products we have to offer.",
                     items: [],
                 },
-                {
-                    title: "Build a Board",
-                    href: "/build-a-board",
-                    description: "Build your own custom skateboard.",
-                    items: [],
-                },
-                {
-                    title: "Blog",
-                    href: "/blog",
-                    description: "Read our latest blog posts.",
-                    items: [],
-                },
             ],
         },
         ...productCategories.map((category) => ({
@@ -59,36 +47,6 @@ export const siteConfig = {
     ] satisfies MainNavItem[],
     links,
     footerNav: [
-        {
-            title: "Credits",
-            items: [
-                {
-                    title: "OneStopShop",
-                    href: "https://onestopshop.jackblatch.com",
-                    external: true,
-                },
-                {
-                    title: "Acme Corp",
-                    href: "https://acme-corp.jumr.dev",
-                    external: true,
-                },
-                {
-                    title: "craft.mxkaske.dev",
-                    href: "https://craft.mxkaske.dev",
-                    external: true,
-                },
-                {
-                    title: "Taxonomy",
-                    href: "https://tx.shadcn.com/",
-                    external: true,
-                },
-                {
-                    title: "shadcn/ui",
-                    href: "https://ui.shadcn.com",
-                    external: true,
-                },
-            ],
-        },
         {
             title: "Help",
             items: [
@@ -125,31 +83,6 @@ export const siteConfig = {
                 {
                     title: "GitHub",
                     href: links.github,
-                    external: true,
-                },
-            ],
-        },
-        {
-            title: "Lofi",
-            items: [
-                {
-                    title: "beats to study to",
-                    href: "https://www.youtube.com/watch?v=jfKfPfyJRdk",
-                    external: true,
-                },
-                {
-                    title: "beats to chill to",
-                    href: "https://www.youtube.com/watch?v=rUxyKA_-grg",
-                    external: true,
-                },
-                {
-                    title: "a fresh start",
-                    href: "https://www.youtube.com/watch?v=rwionZbOryo",
-                    external: true,
-                },
-                {
-                    title: "coffee to go",
-                    href: "https://www.youtube.com/watch?v=2gliGzb2_1I",
                     external: true,
                 },
             ],

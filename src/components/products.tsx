@@ -3,12 +3,10 @@
 import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { Option, Product } from "@/types";
-
 import { getSubcategories, sortOptions } from "@/config/products";
-import { cn, toTitleCase, truncate } from "@/lib/utils";
+import { cn, toTitleCase } from "@/lib/utils";
 import { useDebounce } from "@/hooks/use-debounce";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -18,8 +16,6 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Slider } from "@/components/ui/slider";
@@ -27,10 +23,11 @@ import { ProductCard } from "@/components/cards/product-card";
 import { Icons } from "@/components/icons";
 import { MultiSelect } from "@/components/multi-select";
 import { PaginationButton } from "@/components/pagers/pagination-button";
+import { CollectionListingAll } from "@/api/products/types";
 
 interface ProductsProps extends React.HTMLAttributes<HTMLDivElement> {
-    products: Product[];
-    pageCount: number;
+    products: CollectionListingAll;
+    pageCount: number ;
     category?: string;
     categories?: string[];
 }
@@ -45,8 +42,6 @@ export function Products({ products, pageCount, category, categories, ...props }
     const page = searchParams.get("page") ?? "1";
     const per_page = searchParams.get("per_page") ?? "8";
     const sort = searchParams.get("sort") ?? "createdAt.desc";
-    const store_ids = searchParams.get("store_ids");
-    const store_page = searchParams.get("store_page") ?? "1";
 
     // Create query string
     const createQueryString = React.useCallback(
@@ -124,23 +119,6 @@ export function Products({ products, pageCount, category, categories, ...props }
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedSubcategories]);
-
-    // Store filter
-    const [storeIds, setStoreIds] = React.useState<number[] | null>(store_ids?.split(".").map(Number) ?? null);
-
-    React.useEffect(() => {
-        startTransition(() => {
-            router.push(
-                `${pathname}?${createQueryString({
-                    store_ids: storeIds?.length ? storeIds.join(".") : null,
-                })}`,
-                {
-                    scroll: false,
-                },
-            );
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [storeIds]);
 
     return (
         <section className="flex flex-col space-y-6" {...props}>
@@ -234,7 +212,6 @@ export function Products({ products, pageCount, category, categories, ...props }
                                             router.push(
                                                 `${pathname}?${createQueryString({
                                                     price_range: 0 - 100,
-                                                    store_ids: null,
                                                     categories: null,
                                                     subcategories: null,
                                                 })}`,
@@ -243,7 +220,6 @@ export function Products({ products, pageCount, category, categories, ...props }
                                             setPriceRange([0, 100]);
                                             setSelectedCategories(null);
                                             setSelectedSubcategories(null);
-                                            setStoreIds(null);
                                         });
                                     }}
                                     disabled={isPending}
@@ -287,7 +263,7 @@ export function Products({ products, pageCount, category, categories, ...props }
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
-            {!isPending && !products.length ? (
+            {!isPending && !products.collection_listings.length ? (
                 <div className="mx-auto flex max-w-xs flex-col space-y-1.5">
                     <h1 className="text-center text-2xl font-bold">No products found</h1>
                     <p className="text-center text-muted-foreground">
@@ -296,11 +272,11 @@ export function Products({ products, pageCount, category, categories, ...props }
                 </div>
             ) : null}
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {products.map((product) => (
+                {products.collection_listings.map((product) => (
                     <ProductCard key={product.collection_id} product={product} />
                 ))}
             </div>
-            {products.length ? (
+            {products.collection_listings.length ? (
                 <PaginationButton
                     pageCount={pageCount}
                     page={page}

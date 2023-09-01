@@ -1,18 +1,12 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { env } from "@/env.mjs";
-
 import { formatPrice, toTitleCase } from "@/lib/utils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Separator } from "@/components/ui/separator";
-import { ProductCard } from "@/components/cards/product-card";
-
 import { Breadcrumbs } from "@/components/pagers/breadcrumbs";
-
-import { Shell } from "@/components/shells/shell";
-import { ProductImageCarousel } from "@/components/product-image-carousel";
-import { StoredFile } from "@/types";
+import { Container } from "@/components/shells/shell";
+import { ProductImage } from "@/components/product-image";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
     title: "Product",
@@ -55,7 +49,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     }
 
     return (
-        <Shell>
+        <Container>
             <Breadcrumbs
                 segments={[
                     {
@@ -63,36 +57,39 @@ export default async function ProductPage({ params }: ProductPageProps) {
                         href: "/products",
                     },
                     {
-                        title: toTitleCase(product.title),
-                        href: `/products?category=${product.title}`,
+                        title: toTitleCase(product.sort_order),
+                        href: `/products?category=${product.sort_order}`,
                     },
                     {
-                        title: product.published_at,
-                        href: `/product/${product.collection_id}`,
+                        title: product.title,
+                        href: `/product/${productId}`,
                     },
                 ]}
             />
             <div className="flex flex-col gap-8 md:flex-row md:gap-16">
-                <ProductImageCarousel className="w-full md:w-1/2" images={product.default_product_image.src} />
+                <ProductImage className="w-full md:w-1/2" image={product.default_product_image.src} />
                 <Separator className="mt-4 md:hidden" />
                 <div className="flex w-full flex-col gap-4 md:w-1/2">
                     <div className="space-y-2">
-                        <h2 className="line-clamp-1 text-2xl font-bold">{product.collection_id}</h2>
-                        <p className="text-base text-muted-foreground">{formatPrice(Math.random())}</p>
+                        <h2 className="line-clamp-1 text-2xl font-bold">{product.title}</h2>
+                        <p className="text-base text-muted-foreground">{formatPrice(product.collection_id)}</p>
                     </div>
-                    <Separator className="my-1.5" />
 
-                    <Separator className="mt-5" />
-                    <Accordion type="single" collapsible className="w-full">
+                    <Button type="submit" size="sm">
+                        Add to cart
+                        <span className="sr-only">Add to cart</span>
+                    </Button>
+
+                    <Accordion type="single" collapsible className="w-full flex-row-reverse">
                         <AccordionItem value="description">
                             <AccordionTrigger>Description</AccordionTrigger>
                             <AccordionContent>
-                                {product.title ?? "No description is available for this product."}
+                                {product.sort_order ?? "No description is available for this product."}
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>
                 </div>
             </div>
-        </Shell>
+        </Container>
     );
 }

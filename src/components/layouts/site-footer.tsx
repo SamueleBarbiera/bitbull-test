@@ -3,12 +3,12 @@ import Link from "next/link";
 
 import { siteConfig } from "@/config/site";
 import { Icons } from "@/components/icons";
-import { Shell } from "@/components/shells/shell";
+import { Container } from "@/components/shells/shell";
 
 export function SiteFooter() {
     return (
         <footer className="w-full border-t bg-background">
-            <Shell as="div">
+            <Container as="div">
                 <section
                     id="footer-content"
                     aria-labelledby="footer-content-heading"
@@ -46,9 +46,6 @@ export function SiteFooter() {
                             </div>
                         ))}
                     </section>
-                    <section id="newsletter" aria-labelledby="newsletter-heading" className="space-y-3">
-                        <h4 className="text-base font-medium">Subscribe to our newsletter</h4>
-                    </section>
                 </section>
                 <section
                     id="footer-bottom"
@@ -69,7 +66,7 @@ export function SiteFooter() {
                         .
                     </div>
                 </section>
-            </Shell>
+            </Container>
         </footer>
     );
 }

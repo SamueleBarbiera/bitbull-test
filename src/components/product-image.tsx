@@ -5,12 +5,12 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Icons } from "@/components/icons";
 
-interface ProductImageCarouselProps extends React.HTMLAttributes<HTMLDivElement> {
-    images: string;
+interface ProductImageProps extends React.HTMLAttributes<HTMLDivElement> {
+    image: string;
 }
 
-export function ProductImageCarousel({ images, className, ...props }: ProductImageCarouselProps) {
-    if (images.length === 0) {
+export function ProductImage({ image, className, ...props }: ProductImageProps) {
+    if (!image) {
         return (
             <div
                 aria-label="Product Placeholder"
@@ -32,14 +32,8 @@ export function ProductImageCarousel({ images, className, ...props }: ProductIma
                         backfaceVisibility: "hidden",
                     }}
                 >
-                    <div className="relative min-w-0 flex-full pl-4">
-                        <Image
-                            src={images}
-                            alt={images}
-                            fill
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            className="object-cover"
-                        />
+                    <div className="relative w-2/3 h-2/3  flex-full pl-4">
+                        <Image src={image} alt={image} fill className="object-cover" loading="lazy" />
                     </div>
                 </div>
             </div>
