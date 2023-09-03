@@ -61,7 +61,7 @@ export function isArrayOfFile(files: unknown): files is File[] {
 }
 
 export function absoluteUrl(path: string) {
-    return `${env.NEXT_PUBLIC_COLLECTION_LIST}${path}`;
+    return `${env.NEXT_PUBLIC_API}${path}`;
 }
 
 export function catchError(err: unknown) {

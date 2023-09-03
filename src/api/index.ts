@@ -35,7 +35,7 @@ type HttpInstanceStructure<D = unknown> =
 export type HttpInstanceType<D> = HttpInstanceStructure<D> & { genericPath: string };
 
 const httpInstance = axios.create({
-    timeout: 3000,
+    timeout: 5000,
 });
 
 httpInstance.interceptors.request.use(

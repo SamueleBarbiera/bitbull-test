@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import type { Option, Product } from "@/types";
+import type { Option } from "@/types";
 import { getSubcategories, sortOptions } from "@/config/products";
 import { cn, toTitleCase } from "@/lib/utils";
 import { useDebounce } from "@/hooks/use-debounce";
@@ -27,7 +27,7 @@ import { CollectionListingAll } from "@/api/products/types";
 
 interface ProductsProps extends React.HTMLAttributes<HTMLDivElement> {
     products: CollectionListingAll;
-    pageCount: number ;
+    pageCount: number;
     category?: string;
     categories?: string[];
 }
@@ -273,7 +273,7 @@ export function Products({ products, pageCount, category, categories, ...props }
             ) : null}
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.collection_listings.map((product) => (
-                    <ProductCard key={product.collection_id} product={product} />
+                    <ProductCard key={product.default_product_image.product_id} product={product} />
                 ))}
             </div>
             {products.collection_listings.length ? (

@@ -6,15 +6,19 @@ export const env = createEnv({
         NODE_ENV: z.enum(["development", "test", "production"]),
     },
     client: {
-        NEXT_PUBLIC_COLLECTION_LIST: z.string().url(),
-        NEXT_PUBLIC_PRODUCTS_COLLECTION: z.string().url(),
-        NEXT_PUBLIC_PRODUCT_DETAILS: z.string().url(),
+        NODE_ENV: z.enum(["development", "test", "production"]),
+        NEXT_PUBLIC_APP_URL: z.string().url(),
+        NEXT_PUBLIC_API: z.string().url(),
+    },
+    server: {
+        NODE_ENV: z.enum(["development", "test", "production"]),
+        NEXT_PUBLIC_APP_URL: z.string().url(),
+        NEXT_PUBLIC_API: z.string().url(),
     },
     experimental__runtimeEnv: {
         NODE_ENV: process.env.NODE_ENV,
-        NEXT_PUBLIC_COLLECTION_LIST: process.env.NEXT_PUBLIC_COLLECTION_LIST,
-        NEXT_PUBLIC_PRODUCTS_COLLECTION: process.env.NEXT_PUBLIC_PRODUCTS_COLLECTION,
-        NEXT_PUBLIC_PRODUCT_DETAILS: process.env.NEXT_PUBLIC_PRODUCT_DETAILS,
+        NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+        NEXT_PUBLIC_API: process.env.NEXT_PUBLIC_API,
     },
     skipValidation: !!process.env.SKIP_ENV_VALIDATION,
     onValidationError: (error) => {
@@ -23,7 +27,7 @@ export const env = createEnv({
     },
     // Called when server variables are accessed on the client.
     onInvalidAccess: (variable) => {
-        console.log("🚀 - file: env.ts:27 - variable:", variable);
+        console.error("❌ Invalid access variable:", variable);
         throw new Error("❌ Attempted to access a server-side environment variable on the client");
     },
 

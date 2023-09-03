@@ -1,9 +1,6 @@
-"use client";
-
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-
 import { cn, formatPrice } from "@/lib/utils";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
@@ -13,24 +10,15 @@ import { CollectionListingData } from "@/api/products/types";
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
     product: CollectionListingData;
-    variant?: "default" | "switchable";
-    isAddedToCart?: boolean;
-    onSwitch?: () => Promise<void>;
 }
 
-export function ProductCard({
-    product,
-    variant = "default",
-    isAddedToCart = false,
-    onSwitch,
-    className,
-    ...props
-}: ProductCardProps) {
-    const [isPending, startTransition] = React.useTransition();
-
+export function ProductCard({ product, className, ...props }: ProductCardProps) {
     return (
         <Card className={cn("h-full overflow-hidden rounded-sm", className)} {...props}>
-            <Link aria-label={`View ${product.title} details`} href={`/product/${product.collection_id}`}>
+            <Link
+                aria-label={`View ${product.title} details`}
+                href={`/product/${product.default_product_image.product_id}`}
+            >
                 <CardHeader className="border-b p-0">
                     <AspectRatio ratio={4 / 3}>
                         {product.default_product_image.id ? (
@@ -55,46 +43,19 @@ export function ProductCard({
                     </AspectRatio>
                 </CardHeader>
             </Link>
-            <Link aria-label={`View ${product.collection_id} details`} href={`/product/${product.collection_id}`}>
+            <Link
+                aria-label={`View ${product.default_product_image.product_id} details`}
+                href={`/product/${product.default_product_image.product_id}`}
+            >
                 <CardContent className="grid gap-2.5 p-4">
-                    <CardTitle className="line-clamp-1">{product.collection_id}</CardTitle>
-                    <CardDescription className="line-clamp-2">{formatPrice(Math.random())}</CardDescription>
+                    <CardTitle className="line-clamp-1">{product.title}</CardTitle>
+                    <CardDescription className="line-clamp-2">{formatPrice("30")}</CardDescription>
                 </CardContent>
             </Link>
             <CardFooter className="p-4">
-                {variant === "default" ? (
-                    <Button
-                        aria-label="Add to cart"
-                        size="sm"
-                        className="h-8 w-full rounded-sm"
-                        onClick={() => {}}
-                        disabled={isPending}
-                    >
-                        {isPending && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />}
-                        Add to cart
-                    </Button>
-                ) : (
-                    <Button
-                        aria-label={isAddedToCart ? "Remove from cart" : "Add to cart"}
-                        size="sm"
-                        className="h-8 w-full rounded-sm"
-                        onClick={() => {
-                            startTransition(async () => {
-                                await onSwitch?.();
-                            });
-                        }}
-                        disabled={isPending}
-                    >
-                        {isPending ? (
-                            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
-                        ) : isAddedToCart ? (
-                            <Icons.check className="mr-2 h-4 w-4" aria-hidden="true" />
-                        ) : (
-                            <Icons.add className="mr-2 h-4 w-4" aria-hidden="true" />
-                        )}
-                        {isAddedToCart ? "Added" : "Add to cart"}
-                    </Button>
-                )}
+                <Button aria-label="Add to cart" size="sm" className="h-8 w-full rounded-sm">
+                    Add to cart
+                </Button>
             </CardFooter>
         </Card>
     );

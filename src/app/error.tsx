@@ -1,6 +1,7 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
+import { ErrorCard } from "@/components/cards/error-card";
+import { Container } from "@/components/containers/mainContainer";
+import { useEffect } from "react"
 
 export default function ErrorPageBoundary({ error, reset }: { error: Error; reset: () => void }) {
     useEffect(() => {
@@ -9,17 +10,8 @@ export default function ErrorPageBoundary({ error, reset }: { error: Error; rese
     }, [error]);
 
     return (
-        <div id="error-page">
-            <h1>Oops!</h1>
-            <p>Un è successo un errore, riprova più tardi </p>
-            <Button
-                onClick={
-                    // Attempt to recover by trying to re-render the segment
-                    () => reset()
-                }
-            >
-                Riprova
-            </Button>
-        </div>
+        <Container variant="centered" className="max-w-md">
+            <ErrorCard title={error.name} description={error.message} reset={reset} />
+        </Container>
     );
 }

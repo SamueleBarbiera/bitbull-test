@@ -39,8 +39,6 @@ export const productCategories = [
     }[];
 }[];
 
-export const productTags = ["new", "sale", "bestseller", "featured", "popular", "trending", "limited", "exclusive"];
-
 export function getSubcategories(category?: string): Option[] {
     if (!category) return [];
 

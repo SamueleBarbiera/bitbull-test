@@ -30,7 +30,8 @@ function Providers({ children }: PropsWithChildren) {
                 mutationCache,
                 defaultOptions: {
                     queries: {
-                        refetchOnWindowFocus: false, // default: true
+                        staleTime: 5 * 1000,
+                        
                     },
                 },
             }),

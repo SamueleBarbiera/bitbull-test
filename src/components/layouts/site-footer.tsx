@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { siteConfig } from "@/config/site";
 import { Icons } from "@/components/icons";
-import { Container } from "@/components/shells/shell";
+import { Container } from "@/components/containers/mainContainer";
 
 export function SiteFooter() {
     return (

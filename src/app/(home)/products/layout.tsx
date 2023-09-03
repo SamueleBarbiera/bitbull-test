@@ -1,16 +1,8 @@
 interface ProductsLayoutProps {
-  children: React.ReactNode
-  modal: React.ReactNode
+    children: React.ReactNode;
+    modal: React.ReactNode;
 }
 
-export default function ProductsLayout({
-  children,
-  modal,
-}: ProductsLayoutProps) {
-  return (
-    <>
-      {children}
-      {modal}
-    </>
-  )
+export default function ProductsLayout({ children }: ProductsLayoutProps) {
+    return <>{children}</>;
 }

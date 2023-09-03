@@ -16,9 +16,9 @@ interface ILayout {
 
 export default function RootLayout({ children }: ILayout) {
     return (
-        <html lang="it" suppressHydrationWarning={true}>
+        <html lang="it">
             <body suppressHydrationWarning={true} className={inter.className}>
-                <Providers> {children} </Providers>
+                <Providers>{children}</Providers>
             </body>
         </html>
     );

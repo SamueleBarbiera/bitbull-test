@@ -17,7 +17,7 @@ export const siteConfig = {
     ogImage: "https://test.example.com/opengraph-image.png",
     mainNav: [
         {
-            title: "Lobby",
+            title: "Home",
             items: [
                 {
                     title: "Products",

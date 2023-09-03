@@ -3,7 +3,7 @@
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Icons } from "@/components/icons";
-import { Container } from "@/components/shells/shell";
+import { Container } from "@/components/containers/mainContainer";
 
 export default function ProductLoading() {
     return (
@@ -24,13 +24,6 @@ export default function ProductLoading() {
                         >
                             <Icons.placeholder className="h-9 w-9 text-muted-foreground" aria-hidden="true" />
                         </div>
-                        <div className="flex w-full items-center justify-center gap-2">
-                            <Skeleton className="h-7 w-7 rounded-none" />
-                            {Array.from({ length: 3 }).map((_, i) => (
-                                <Skeleton key={i} className="aspect-square h-full w-full max-w-[100px] rounded-none" />
-                            ))}
-                            <Skeleton className="h-7 w-7 rounded-none" />
-                        </div>
                     </div>
                 </div>
                 <Separator className="mt-4 md:hidden" />
@@ -43,7 +36,6 @@ export default function ProductLoading() {
                     <Separator className="my-1.5" />
                     <div className="flex items-center space-x-2">
                         <Skeleton className="h-8 w-[7.5rem]" />
-                        <Skeleton className="h-8 w-24" />
                     </div>
                     <Separator className="mb-2.5 mt-5" />
                     <div className="flex items-center">

@@ -72,8 +72,6 @@ const config = {
         "@typescript-eslint/no-unsafe-assignment": "warn",
         "@typescript-eslint/no-explicit-any": "warn",
         "@typescript-eslint/explicit-member-accessibility": ["warn"],
-        "require-await": "warn",
-        "@typescript-eslint/require-await": "warn",
         "no-empty-pattern": "warn",
         "react/no-children-prop": "warn",
         "react/prop-types": "off",

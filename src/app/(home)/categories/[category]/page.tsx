@@ -3,7 +3,7 @@
 import { toTitleCase } from "@/lib/utils";
 import { PageHeader, PageHeaderHeading } from "@/components/page-header";
 import { Products } from "@/components/products";
-import { Container } from "@/components/shells/shell";
+import { Container } from "@/components/containers/mainContainer";
 import { useCollectionListingFetch } from "@/api/products/collection.listing.query";
 
 interface CategoryPageProps {
@@ -21,6 +21,7 @@ export default function CategoryPage({ params, searchParams }: CategoryPageProps
     const limit = typeof per_page === "string" ? parseInt(per_page) : 8;
 
     const { data: products } = useCollectionListingFetch().useGetAllCollectionListing();
+    console.log("🚀 - file: page.tsx:24 - CategoryPage - products:", products);
 
     const pageCount = Math.ceil(products?.collection_listings.length ?? 0 / limit);
 

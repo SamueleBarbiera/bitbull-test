@@ -3,14 +3,15 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { ProductCard } from "@/components/cards/product-card";
-import { Container } from "@/components/shells/shell";
+import { Container } from "@/components/containers/mainContainer";
 import { useCollectionListingFetch } from "@/api/products/collection.listing.query";
 import { LoadingProductCard } from "@/components/cards/loading-product-card";
+import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
 export default function IndexPage() {
-    const { data: someProducts, isLoading } = useCollectionListingFetch().useGetAllCollectionListing();
+    const { data: someProducts } = useCollectionListingFetch().useGetAllCollectionListing();
     console.log("🚀 - file: page.tsx:13 - IndexPage - someProducts:", someProducts);
 
     return (
@@ -49,15 +50,9 @@ export default function IndexPage() {
                     </Link>
                 </div>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {!isLoading ? (
-                        <>
-                            {someProducts?.collection_listings.map((product) => (
-                                <ProductCard key={product.collection_id} product={product} />
-                            ))}
-                        </>
-                    ) : (
-                        <LoadingProductCard />
-                    )}
+                    {someProducts?.collection_listings.map((product) => (
+                        <ProductCard key={product.default_product_image.product_id} product={product} />
+                    ))}
                 </div>
             </section>
         </Container>

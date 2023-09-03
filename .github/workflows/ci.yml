@@ -53,5 +53,5 @@ jobs:
                       ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}-
 
             - name: Build, lint and type-check
-              run: pnpm build && pnpm lintCheck
+              run: pnpm lintCheck && pnpm build
             - uses: actions/checkout@v3

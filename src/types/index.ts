@@ -58,5 +58,3 @@ export interface StoredFile {
     name: string;
     url: string;
 }
-
-export type Product = typeof AllProducts.collection_listings[number];

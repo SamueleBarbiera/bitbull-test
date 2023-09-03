@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { MainNav } from "@/components/layouts/main-nav";
 import { MobileNav } from "@/components/layouts/mobile-nav";
 
@@ -12,15 +12,14 @@ export function SiteHeader() {
                 <MobileNav mainNavItems={siteConfig.mainNav} />
                 <div className="flex flex-1 items-center justify-end space-x-4">
                     <nav className="flex items-center space-x-2">
-                        <Link
-                            href="/signin"
+                        <Button
                             className={buttonVariants({
                                 size: "sm",
                             })}
                         >
                             Sign In
                             <span className="sr-only">Sign In</span>
-                        </Link>
+                        </Button>
                     </nav>
                 </div>
             </div>

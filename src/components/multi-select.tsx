@@ -4,7 +4,6 @@ import * as React from "react";
 import type { Option } from "@/types";
 import { Command as CommandPrimitive } from "cmdk";
 import { X } from "lucide-react";
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Command, CommandGroup, CommandItem } from "@/components/ui/command";

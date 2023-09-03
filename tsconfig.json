@@ -21,7 +21,8 @@
         ],
         "typeRoots": ["./node_modules/@types", "src/types"],
         "paths": {
-            "@/*": ["./src/*"]
+            "@/*": ["./src/*"],
+            "react": ["./node_modules/@types/react"]
         }
     },
     "include": [".eslintrc.cjs", "next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs", ".next/types/**/*.ts"],

@@ -1,17 +1,14 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { formatPrice, toTitleCase } from "@/lib/utils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Separator } from "@/components/ui/separator";
 import { Breadcrumbs } from "@/components/pagers/breadcrumbs";
-import { Container } from "@/components/shells/shell";
+import { Container } from "@/components/containers/mainContainer";
 import { ProductImage } from "@/components/product-image";
 import { Button } from "@/components/ui/button";
-
-export const metadata: Metadata = {
-    title: "Product",
-    description: "Product description",
-};
+import { httpCall } from "@/api";
+import { Product } from "@/api/products/types";
+import { env } from "@/env.mjs";
+import { Metadata } from "next";
 
 interface ProductPageProps {
     params: {
@@ -19,34 +16,26 @@ interface ProductPageProps {
     };
 }
 
+export const metadata: Metadata = {
+    metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+    title: "Product",
+    description: "Product description",
+};
+
+async function getData(id: string) {
+    const res = await httpCall<{ product: Product }>({
+        genericPath: `${env.NEXT_PUBLIC_API}/products/${id}.json`,
+        type: "getAll",
+    });
+    console.log("🚀 - file: page.tsx:23 - getData - res:", res.product);
+    // The return value is *not* serialized
+    // You can return Date, Map, Set, etc.
+
+    return res.product;
+}
+
 export default async function ProductPage({ params }: ProductPageProps) {
-    const productId = Number(params.productId);
-
-    const product = {
-        collection_id: 266329686089,
-        updated_at: "2022-05-13T18:33:52+02:00",
-        body_html: "",
-        default_product_image: {
-            id: 29040751411273,
-            created_at: "2022-04-20T16:04:42+02:00",
-            position: 1,
-            updated_at: "2022-04-20T16:04:42+02:00",
-            product_id: 6735725133897,
-            src: "https://cdn.shopify.com/s/files/1/0569/3315/4889/products/dark-wall-bedside-table_925x_1e444a82-4f58-4f20-af70-052b4d8e171a.jpg?v=1650463482",
-            variant_ids: [],
-            width: 925,
-            height: 617,
-        },
-        handle: "home-and-garden",
-        image: null,
-        title: "Home and Garden",
-        sort_order: "best-selling",
-        published_at: "2022-05-13T18:33:52+02:00",
-    };
-
-    if (!product) {
-        notFound();
-    }
+    const product = await getData(params.productId);
 
     return (
         <Container>
@@ -57,22 +46,24 @@ export default async function ProductPage({ params }: ProductPageProps) {
                         href: "/products",
                     },
                     {
-                        title: toTitleCase(product.sort_order),
-                        href: `/products?category=${product.sort_order}`,
+                        title: toTitleCase(product.title),
+                        href: `/products?category=${product.title}`,
                     },
                     {
                         title: product.title,
-                        href: `/product/${productId}`,
+                        href: `/product/${product.id}`,
                     },
                 ]}
             />
             <div className="flex flex-col gap-8 md:flex-row md:gap-16">
-                <ProductImage className="w-full md:w-1/2" image={product.default_product_image.src} />
+                <ProductImage className="w-full md:w-1/2" image={product.image.src} />
                 <Separator className="mt-4 md:hidden" />
                 <div className="flex w-full flex-col gap-4 md:w-1/2">
                     <div className="space-y-2">
                         <h2 className="line-clamp-1 text-2xl font-bold">{product.title}</h2>
-                        <p className="text-base text-muted-foreground">{formatPrice(product.collection_id)}</p>
+                        <p className="text-base text-muted-foreground">
+                            {formatPrice(product.variants[0]?.price.toString() ?? "0.00")}
+                        </p>
                     </div>
 
                     <Button type="submit" size="sm">
@@ -83,9 +74,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     <Accordion type="single" collapsible className="w-full flex-row-reverse">
                         <AccordionItem value="description">
                             <AccordionTrigger>Description</AccordionTrigger>
-                            <AccordionContent>
-                                {product.sort_order ?? "No description is available for this product."}
-                            </AccordionContent>
+                            <AccordionContent>{product.variants[0]?.sku}</AccordionContent>
                         </AccordionItem>
                     </Accordion>
                 </div>
