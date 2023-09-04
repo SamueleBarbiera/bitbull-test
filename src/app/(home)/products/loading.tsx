@@ -18,7 +18,7 @@ export default function ProductsLoading() {
                     <Skeleton className="h-9 w-20" />
                 </div>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {Array.from({ length: 8 }).map((_, i) => (
+                    {Array.from({ length: 3 }).map((_, i) => (
                         <Card key={i} className="rounded-sm">
                             <CardHeader className="border-b p-0">
                                 <AspectRatio ratio={4 / 3}>

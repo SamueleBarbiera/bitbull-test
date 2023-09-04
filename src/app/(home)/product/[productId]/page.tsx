@@ -5,8 +5,8 @@ import { Breadcrumbs } from "@/components/pagers/breadcrumbs";
 import { Container } from "@/components/containers/mainContainer";
 import { ProductImage } from "@/components/product-image";
 import { Button } from "@/components/ui/button";
-import { httpCall } from "@/api";
-import { Product } from "@/api/products/types";
+import { httpCall } from "@/services";
+import { Product } from "@/services/products/types";
 import { env } from "@/env.mjs";
 import { Metadata } from "next";
 
@@ -16,10 +16,10 @@ interface ProductPageProps {
     };
 }
 
-export const metadata: Metadata = {
-    metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-    title: "Product",
-    description: "Product description",
+export const generateMetadata = ({ params }: ProductPageProps): Metadata => {
+    return {
+        title: `Product - ${params.productId}`,
+    };
 };
 
 async function getData(id: string) {

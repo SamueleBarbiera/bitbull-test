@@ -1,16 +1,16 @@
 import { env } from "@/env.mjs";
 import { Metadata } from "next";
 
-interface ProductsLayoutProps {
+interface CategoriesLayoutProps {
     children: React.ReactNode;
 }
 
 export const metadata: Metadata = {
     metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-    title: "Products page",
-    description: "All available products",
+    title: "Categories page",
+    description: "All available categories",
 };
 
-export default function ProductsLayout({ children }: ProductsLayoutProps) {
+export default function CategoriesLayout({ children }: CategoriesLayoutProps) {
     return <>{children}</>;
 }

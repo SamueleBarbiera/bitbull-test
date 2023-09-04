@@ -7,6 +7,7 @@ export const useCollectionListingFetch = () => {
     return {
         useGetAllCollectionListing: () => {
             return useQuery({
+                keepPreviousData: true,
                 suspense: true,
                 queryKey: ["useGetAllCollectionListing"],
                 queryFn: () =>
@@ -23,7 +24,7 @@ export const useCollectionListingFetch = () => {
                 queryKey: ["useProductByCollectionId", product_id],
                 queryFn: () =>
                     httpCall<Product>({
-                        genericPath: `${env.NEXT_PUBLIC_API}/products/${product_id}.json`,
+                        genericPath: `${env.NEXT_PUBLIC_API}products/${product_id}.json`,
                         type: "getAll",
                     }),
             });

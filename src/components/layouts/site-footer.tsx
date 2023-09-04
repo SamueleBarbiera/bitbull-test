@@ -1,8 +1,5 @@
-"use client";
 import Link from "next/link";
-
 import { siteConfig } from "@/config/site";
-import { Icons } from "@/components/icons";
 import { Container } from "@/components/containers/mainContainer";
 
 export function SiteFooter() {
@@ -14,16 +11,10 @@ export function SiteFooter() {
                     aria-labelledby="footer-content-heading"
                     className="flex flex-col gap-10 lg:flex-row lg:gap-20"
                 >
-                    <section id="footer-branding" aria-labelledby="footer-branding-heading">
-                        <Link aria-label="Home" href="/" className="flex items-center space-x-2">
-                            <Icons.logo className="h-6 w-6" aria-hidden="true" />
-                            <span className="font-bold">{siteConfig.name}</span>
-                        </Link>
-                    </section>
                     <section
                         id="footer-links"
                         aria-labelledby="footer-links-heading"
-                        className="grid flex-1 grid-cols-1 gap-10 xxs:grid-cols-2 sm:grid-cols-4"
+                        className="grid flex-1 grid-cols-1 flex-row-reverse sm:grid-cols-2"
                     >
                         {siteConfig.footerNav.map((item) => (
                             <div key={item.title} className="space-y-3">

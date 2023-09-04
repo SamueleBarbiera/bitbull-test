@@ -43,7 +43,7 @@ httpInstance.interceptors.request.use(
         console.log("🚀 ~ file: index.ts:54 ~ config:", config);
         return config;
     },
-    (error: unknown) => {
+    (error) => {
         const errorMessage = error instanceof AxiosError ? error.message : "Unknown error";
         if (error instanceof AxiosError) console.log(`❌ Error message: ${errorMessage}`);
         return Promise.reject(errorMessage);

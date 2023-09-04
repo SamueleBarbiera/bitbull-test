@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { ProductCard } from "@/components/cards/product-card";
 import { Container } from "@/components/containers/mainContainer";
-import { useCollectionListingFetch } from "@/api/products/collection.listing.query";
+import { useCollectionListingFetch } from "@/services/products/collection.listing.query";
 import { LoadingProductCard } from "@/components/cards/loading-product-card";
 import { Suspense } from "react";
 

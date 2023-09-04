@@ -6,7 +6,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Icons } from "@/components/icons";
-import { CollectionListingData } from "@/api/products/types";
+import { CollectionListingData } from "@/services/products/types";
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
     product: CollectionListingData;
