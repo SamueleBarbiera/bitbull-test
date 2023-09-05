@@ -29,5 +29,33 @@ export const useCollectionListingFetch = () => {
                     }),
             });
         },
+
+        useGetAllCategories: () => {
+            return useQuery({
+                keepPreviousData: true,
+                suspense: true,
+                queryKey: ["useGetAllCategories"],
+                queryFn: () =>
+                    httpCall<CollectionListingAll>({
+                        genericPath: `${env.NEXT_PUBLIC_API}collection_listings.json`,
+                        type: "getAll",
+                    }).then((data) => {
+                        const categories = data.collection_listings.map((category) => category.handle);
+                        return categories;
+                    }),
+            });
+        },
+
+        useGetProductsByCollectionID: (product: CollectionListingData) => {
+            return useQuery({
+                suspense: true,
+                queryKey: ["useGetProductsByCollectionID"],
+                queryFn: () =>
+                    httpCall<CollectionListingAll>({
+                        genericPath: `${env.NEXT_PUBLIC_API}collections/${product.collection_id}/products.json`,
+                        type: "getAll",
+                    }),
+            });
+        },
     };
 };

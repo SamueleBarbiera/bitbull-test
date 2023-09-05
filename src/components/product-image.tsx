@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -24,7 +22,7 @@ export function ProductImage({ image, className, ...props }: ProductImageProps) 
     }
 
     return (
-        <div aria-label="Product image carousel" className={cn("flex flex-col gap-2", className)} {...props}>
+        <div aria-label="Product image" className={cn("flex flex-col gap-2", className)} {...props}>
             <div className="overflow-hidden">
                 <div
                     className="-ml-4 flex touch-pan-y"
@@ -32,8 +30,16 @@ export function ProductImage({ image, className, ...props }: ProductImageProps) 
                         backfaceVisibility: "hidden",
                     }}
                 >
-                    <div className="relative w-2/3 h-2/3  flex-full pl-4">
-                        <Image src={image} alt={image} fill className="object-cover" loading="lazy" />
+                    <div className="  flex-full pl-4">
+                        <Image
+                            src={image}
+                            alt={image}
+                            width="500"
+                            height="500"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="rounded-sm w-full h-auto object-cover"
+                            priority
+                        />
                     </div>
                 </div>
             </div>

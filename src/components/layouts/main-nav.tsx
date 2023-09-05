@@ -3,7 +3,6 @@
 import * as React from "react";
 import Link from "next/link";
 import { MainNavItem } from "@/types";
-
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import {
@@ -13,7 +12,6 @@ import {
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
-    navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Icons } from "@/components/icons";
 
@@ -61,34 +59,22 @@ export function MainNav({ items }: MainNavProps) {
                     ) : null}
                     {items
                         ?.filter((item) => item.title !== items[0]?.title)
-                        .map((item) =>
-                            item.items ? (
-                                <NavigationMenuItem key={item.title}>
-                                    <NavigationMenuTrigger className="h-auto capitalize">
-                                        {item.title}
-                                    </NavigationMenuTrigger>
-                                    <NavigationMenuContent>
-                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                                            {item.items.map((item) => (
-                                                <ListItem key={item.title} title={item.title} href={item.href}>
-                                                    {item.description}
-                                                </ListItem>
-                                            ))}
-                                        </ul>
-                                    </NavigationMenuContent>
-                                </NavigationMenuItem>
-                            ) : (
-                                item.href && (
-                                    <NavigationMenuItem key={item.title}>
-                                        <Link href={item.href} legacyBehavior passHref>
-                                            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "h-auto")}>
-                                                {item.title}
-                                            </NavigationMenuLink>
-                                        </Link>
-                                    </NavigationMenuItem>
-                                )
-                            ),
-                        )}
+                        .map((item) => (
+                            <NavigationMenuItem key={item.title}>
+                                <NavigationMenuTrigger className="h-auto capitalize">
+                                    {item.title}
+                                </NavigationMenuTrigger>
+                                <NavigationMenuContent>
+                                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                                        {item.items.map((item) => (
+                                            <ListItem key={item.title} title={item.title} href={item.href}>
+                                                {item.description}
+                                            </ListItem>
+                                        ))}
+                                    </ul>
+                                </NavigationMenuContent>
+                            </NavigationMenuItem>
+                        ))}
                 </NavigationMenuList>
             </NavigationMenu>
         </div>

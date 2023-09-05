@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 const queryCache = new QueryCache({
     onError: (error) => {
         const errorMessage = error instanceof Error ? error.message : "Unknown error";
-        if (error instanceof Error) console.log(`❌ Error message: ${errorMessage}`);
+        if (error instanceof Error) console.error(`❌ Error message: ${errorMessage}`);
         toast.error(errorMessage);
     },
 });
@@ -16,7 +16,7 @@ const queryCache = new QueryCache({
 const mutationCache = new MutationCache({
     onError: (error) => {
         const errorMessage = error instanceof Error ? error.message : "Unknown error";
-        if (error instanceof Error) console.log(`❌ Error message: ${errorMessage}`);
+        if (error instanceof Error) console.error(`❌ Error message: ${errorMessage}`);
 
         toast.error(errorMessage);
     },

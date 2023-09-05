@@ -1,8 +1,4 @@
 import { FooterItem, MainNavItem } from "@/types";
-
-import { productCategories } from "@/config/products";
-import { slugify } from "@/lib/utils";
-
 export type SiteConfig = typeof siteConfig;
 
 const links = {
@@ -23,27 +19,9 @@ export const siteConfig = {
                     title: "Products",
                     href: "/products",
                     description: "All the products we have to offer.",
-                    items: [],
                 },
             ],
         },
-        ...productCategories.map((category) => ({
-            title: category.title,
-            items: [
-                {
-                    title: "All",
-                    href: `/categories/${slugify(category.title)}`,
-                    description: `All ${category.title}.`,
-                    items: [],
-                },
-                ...category.subcategories.map((subcategory) => ({
-                    title: subcategory.title,
-                    href: `/categories/${slugify(category.title)}/${subcategory.slug}`,
-                    description: subcategory.description,
-                    items: [],
-                })),
-            ],
-        })),
     ] satisfies MainNavItem[],
     links,
     footerNav: [

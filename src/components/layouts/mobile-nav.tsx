@@ -22,14 +22,6 @@ export function MobileNav({ mainNavItems }: MobileNavProps) {
 
     const navItems = React.useMemo(() => {
         const items = mainNavItems ?? [];
-        const myAccountItem = {
-            title: "My Account",
-        };
-        const myAccountIndex = items.findIndex((item) => item.title === "My Account");
-        if (myAccountIndex !== -1) {
-            items.splice(myAccountIndex, 1);
-        }
-        items.splice(1, 0, myAccountItem);
         return items;
     }, [mainNavItems]);
 
@@ -59,14 +51,13 @@ export function MobileNav({ mainNavItems }: MobileNavProps) {
                                     <AccordionTrigger className="text-sm capitalize">{item.title}</AccordionTrigger>
                                     <AccordionContent>
                                         <div className="flex flex-col space-y-2">
-                                            {item.items?.map((subItem, index) =>
+                                            {item.items.map((subItem, index) =>
                                                 subItem.href ? (
                                                     <MobileLink
                                                         key={index}
                                                         href={String(subItem.href)}
                                                         pathname={pathname}
                                                         setIsOpen={setIsOpen}
-                                                        disabled={subItem.disabled}
                                                     >
                                                         {subItem.title}
                                                     </MobileLink>

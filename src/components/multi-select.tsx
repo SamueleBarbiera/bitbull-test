@@ -9,16 +9,16 @@ import { Button } from "@/components/ui/button";
 import { Command, CommandGroup, CommandItem } from "@/components/ui/command";
 
 interface MultiSelectProps {
-    selected: Option[] | null;
-    setSelected: React.Dispatch<React.SetStateAction<Option[] | null>>;
-    onChange?: (value: Option[] | null) => void;
+    selected: string[];
+    setSelectedCategories: React.Dispatch<React.SetStateAction<string[]>>;
+    onChange?: (value: string[]) => void;
     placeholder?: string;
-    options: Option[];
+    options: string[];
 }
 
 export function MultiSelect({
     selected,
-    setSelected,
+    setSelectedCategories,
     onChange,
     placeholder = "Select options",
     options,
@@ -29,21 +29,21 @@ export function MultiSelect({
 
     // Register as input field to be used in react-hook-form
     React.useEffect(() => {
-        if (onChange) onChange(selected?.length ? selected : null);
+        if (onChange) onChange(selected.length ? selected : []);
     }, [onChange, selected]);
 
     const handleSelect = React.useCallback(
-        (option: Option) => {
-            setSelected((prev) => [...(prev ?? []), option]);
+        (option: string) => {
+            setSelectedCategories((prev) => [...(prev ?? []), option]);
         },
-        [setSelected],
+        [setSelectedCategories],
     );
 
     const handleRemove = React.useCallback(
-        (option: Option) => {
-            setSelected((prev) => prev?.filter((item) => item !== option) ?? []);
+        (option: string) => {
+            setSelectedCategories((prev) => prev.filter((item) => item !== option) ?? []);
         },
-        [setSelected],
+        [setSelectedCategories],
     );
 
     const handleKeyDown = React.useCallback(
@@ -51,7 +51,7 @@ export function MultiSelect({
             if (!inputRef.current) return;
 
             if (event.key === "Backspace" || event.key === "Delete") {
-                setSelected((prev) => prev?.slice(0, -1) ?? []);
+                setSelectedCategories((prev) => prev.slice(0, -1) ?? []);
             }
 
             // Blur input on escape
@@ -59,17 +59,17 @@ export function MultiSelect({
                 inputRef.current.blur();
             }
         },
-        [setSelected],
+        [setSelectedCategories],
     );
 
     // Memoize filtered options to avoid unnecessary re-renders
     const filteredOptions = React.useMemo(() => {
         return options.filter((option) => {
-            if (selected?.find((item) => item.value === option.value)) return false;
+            if (selected.find((item) => item === option)) return false;
 
             if (query.length === 0) return true;
 
-            return option.label.toLowerCase().includes(query.toLowerCase());
+            return option.toLowerCase().includes(query.toLowerCase());
         });
     }, [options, query, selected]);
 
@@ -77,10 +77,10 @@ export function MultiSelect({
         <Command onKeyDown={handleKeyDown} className="overflow-visible bg-transparent">
             <div className="group rounded-md border border-input px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
                 <div className="flex flex-wrap gap-1">
-                    {selected?.map((option) => {
+                    {selected.map((option) => {
                         return (
-                            <Badge key={option.value} variant="secondary" className="rounded hover:bg-secondary">
-                                {option.label}
+                            <Badge key={option} variant="secondary" className="rounded hover:bg-secondary">
+                                {option}
                                 <Button
                                     aria-label="Remove option"
                                     size="sm"
@@ -121,7 +121,7 @@ export function MultiSelect({
                             {filteredOptions.map((option) => {
                                 return (
                                     <CommandItem
-                                        key={option.value}
+                                        key={option}
                                         className="px-2 py-1.5 text-sm"
                                         onMouseDown={(e) => {
                                             e.preventDefault();
@@ -132,7 +132,7 @@ export function MultiSelect({
                                             setQuery("");
                                         }}
                                     >
-                                        {option.label}
+                                        {option}
                                     </CommandItem>
                                 );
                             })}

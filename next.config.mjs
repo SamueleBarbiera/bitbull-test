@@ -1,23 +1,24 @@
 import "./src/env.mjs";
-import million from "million/compiler";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
 
+    //remove console.log from production build
+    compiler: {
+        removeConsole: process.env.NODE_ENV === "production",
+    },
+
     /** We already do linting and typechecking as separate tasks in CI */
     eslint: { ignoreDuringBuilds: true },
     typescript: { ignoreBuildErrors: true },
+
+    // for the deployment with docker
     output: "standalone",
+
     images: {
         domains: ["https://cdn.shopify.com/", "cdn.shopify.com", "cdn.shopify.com/"],
     },
 };
 
-const millionConfig = {
-    auto: true,
-    // if you're using RSC:
-    // auto: { rsc: true },
-};
-
-export default million.next(nextConfig, millionConfig);
+export default nextConfig;

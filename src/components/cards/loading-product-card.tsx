@@ -1,5 +1,3 @@
-"use client";
-
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Icons } from "@/components/icons";

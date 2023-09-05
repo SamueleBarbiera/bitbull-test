@@ -6,23 +6,25 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Icons } from "@/components/icons";
-import { Product } from "@/services/products/types";
+import { CollectionListingData } from "@/services/products/types";
 
-interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
-    product: Product;
+interface ProductCardCollectionProps extends React.HTMLAttributes<HTMLDivElement> {
+    product: CollectionListingData;
 }
 
-export function ProductCard({ product, className, ...props }: ProductCardProps) {
-
+export function ProductCardCollection({ product, className, ...props }: ProductCardCollectionProps) {
     return (
         <Card className={cn("h-full overflow-hidden rounded-sm", className)} {...props}>
-            <Link aria-label={`View ${product.title} details`} href={`/product/${product.id}`}>
+            <Link
+                aria-label={`View ${product.title} details`}
+                href={`/product/${product.default_product_image.product_id}`}
+            >
                 <CardHeader className="border-b p-0">
                     <AspectRatio ratio={4 / 3}>
-                        {product.id ? (
+                        {product.default_product_image.id ? (
                             <Image
-                                src={product.image.src}
-                                alt={product.image.src}
+                                src={product.default_product_image.src}
+                                alt={product.default_product_image.src}
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 fill
                                 className="object-cover"
@@ -42,12 +44,12 @@ export function ProductCard({ product, className, ...props }: ProductCardProps) 
                 </CardHeader>
             </Link>
             <Link
-                aria-label={`View ${product.options[0]?.product_id} details`}
-                href={`/product/${product.options[0]?.product_id}`}
+                aria-label={`View ${product.default_product_image.product_id} details`}
+                href={`/product/${product.default_product_image.product_id}`}
             >
                 <CardContent className="grid gap-2.5 p-4">
                     <CardTitle className="line-clamp-1">{product.title}</CardTitle>
-                    <CardDescription className="line-clamp-2">{formatPrice("0.00")}</CardDescription>
+                    <CardDescription className="line-clamp-2">{formatPrice("30.00")}</CardDescription>
                 </CardContent>
             </Link>
             <CardFooter className="p-4">

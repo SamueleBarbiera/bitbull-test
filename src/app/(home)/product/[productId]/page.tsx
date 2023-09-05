@@ -6,9 +6,10 @@ import { Container } from "@/components/containers/mainContainer";
 import { ProductImage } from "@/components/product-image";
 import { Button } from "@/components/ui/button";
 import { httpCall } from "@/services";
-import { Product } from "@/services/products/types";
+import { CollectionListingAll, Product } from "@/services/products/types";
 import { env } from "@/env.mjs";
 import { Metadata } from "next";
+import { ProductCard } from "@/components/cards/product-card";
 
 interface ProductPageProps {
     params: {
@@ -23,19 +24,30 @@ export const generateMetadata = ({ params }: ProductPageProps): Metadata => {
 };
 
 async function getData(id: string) {
-    const res = await httpCall<{ product: Product }>({
-        genericPath: `${env.NEXT_PUBLIC_API}/products/${id}.json`,
+    const resSingleProd = await httpCall<{ product: Product }>({
+        genericPath: `${env.NEXT_PUBLIC_API}products/${id}.json`,
         type: "getAll",
     });
-    console.log("🚀 - file: page.tsx:23 - getData - res:", res.product);
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
+    const findProductByProductID = await httpCall<CollectionListingAll>({
+        genericPath: `${env.NEXT_PUBLIC_API}collection_listings.json`,
+        type: "getAll",
+    }).then((res) => {
+        return res.collection_listings.find((product) => product.default_product_image.product_id.toString() === id);
+    });
 
-    return res.product;
+    const resAllProdByCollectionID =
+        findProductByProductID !== undefined
+            ? await httpCall<{ products: Product[] }>({
+                  genericPath: `${env.NEXT_PUBLIC_API}collections/${findProductByProductID.collection_id}/products.json`,
+                  type: "getAll",
+              })
+            : { products: [] };
+
+    return { product: resSingleProd.product, productsByCollectionID: resAllProdByCollectionID.products };
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-    const product = await getData(params.productId);
+    const { product, productsByCollectionID: products } = await getData(params.productId);
 
     return (
         <Container>
@@ -46,17 +58,17 @@ export default async function ProductPage({ params }: ProductPageProps) {
                         href: "/products",
                     },
                     {
-                        title: toTitleCase(product.title),
-                        href: `/products?category=${product.title}`,
+                        title: toTitleCase(product.handle),
+                        href: `/products?category=${product.handle}`,
                     },
                     {
-                        title: product.title,
+                        title: product.id.toString(),
                         href: `/product/${product.id}`,
                     },
                 ]}
             />
             <div className="flex flex-col gap-8 md:flex-row md:gap-16">
-                <ProductImage className="w-full md:w-1/2" image={product.image.src} />
+                <ProductImage className="w-full md:w-1/2 h-full relative" image={product.image.src} />
                 <Separator className="mt-4 md:hidden" />
                 <div className="flex w-full flex-col gap-4 md:w-1/2">
                     <div className="space-y-2">
@@ -65,20 +77,38 @@ export default async function ProductPage({ params }: ProductPageProps) {
                             {formatPrice(product.variants[0]?.price.toString() ?? "0.00")}
                         </p>
                     </div>
-
                     <Button type="submit" size="sm">
                         Add to cart
                         <span className="sr-only">Add to cart</span>
                     </Button>
-
                     <Accordion type="single" collapsible className="w-full flex-row-reverse">
                         <AccordionItem value="description">
                             <AccordionTrigger>Description</AccordionTrigger>
-                            <AccordionContent>{product.variants[0]?.sku}</AccordionContent>
+                            <AccordionContent>
+                                <div dangerouslySetInnerHTML={{ __html: product.body_html }} />
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>{" "}
+                    <Accordion type="single" collapsible className="w-full flex-row-reverse">
+                        <AccordionItem value="description">
+                            <AccordionTrigger>Tags</AccordionTrigger>
+                            <AccordionContent>{product.tags}</AccordionContent>
                         </AccordionItem>
                     </Accordion>
                 </div>
             </div>
+            {products.length > 0 ? (
+                <div className="overflow-hidden md:pt-6">
+                    <h3 className="line-clamp-1 flex-1 text-lg font-semibold">More products</h3>
+                    <div className="overflow-x-auto pb-2 pt-6">
+                        <div className="flex w-fit gap-4">
+                            {products.map((product) => (
+                                <ProductCard key={product.id} product={product} className="min-w-[260px]" />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            ) : null}
         </Container>
     );
 }

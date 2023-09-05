@@ -40,18 +40,16 @@ const httpInstance = axios.create({
 
 httpInstance.interceptors.request.use(
     (config) => {
-        console.log("🚀 ~ file: index.ts:54 ~ config:", config);
         return config;
     },
     (error) => {
         const errorMessage = error instanceof AxiosError ? error.message : "Unknown error";
-        if (error instanceof AxiosError) console.log(`❌ Error message: ${errorMessage}`);
+        if (error instanceof AxiosError) console.error(`❌ Error message: ${errorMessage}`);
         return Promise.reject(errorMessage);
     },
 );
 
 export const httpCall = async <T, D = null>(state: HttpInstanceType<D>): Promise<T> => {
-    console.log("🚀 - file: index.ts:60 - httpCall - state:", { state });
     let data: T;
     switch (state.type) {
         case "getByID":
