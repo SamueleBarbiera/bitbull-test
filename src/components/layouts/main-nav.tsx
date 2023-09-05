@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { MainNavItem } from "@/types";
+
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import {
@@ -87,8 +88,8 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWit
             <li>
                 <NavigationMenuLink asChild>
                     <Link
+                        href={href ?? ""}
                         ref={ref}
-                        href={String(href)}
                         className={cn(
                             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
                             className,

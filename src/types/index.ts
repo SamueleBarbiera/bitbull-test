@@ -1,3 +1,36 @@
+/**
+ * This code defines the following interfaces:
+ * - NavItem
+ * - Option
+ * - FooterItem
+ * - MainNavItem
+ * - SidebarNavItem
+ * - StoredFile
+ *
+ * It also defines the following types:
+ * - Option
+ * - MainNavItem
+ * - SidebarNavItem
+ *
+ * The NavItem interface is used to define the structure of the navigation bar in the app.
+ * It has a title and a list of items. Each item has a title, a link, and a description.
+ *
+ * The Option interface is used to define the structure of the dropdown menus in the app.
+ * It has a label and a value. It also has an optional icon.
+ *
+ * The FooterItem interface is used to define the structure of the footer in the app.
+ * It has a title and a list of items. Each item has a title and a link.
+ *
+ * The MainNavItem type is used to define the type of the main navigation bar in the app.
+ * It has a title and a list of items. Each item has a title, a link, and a description.
+ *
+ * The SidebarNavItem type is used to define the type of the sidebar navigation bar in the app.
+ * It has a title and a list of items. Each item has a title, a link, and a description.
+ *
+ * The StoredFile interface is used to define the structure of the files stored in the app.
+ * It has an id, a name, and a url.
+ */
+
 export interface NavItem {
     title: string;
     items: {

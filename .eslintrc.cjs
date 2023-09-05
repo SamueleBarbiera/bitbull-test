@@ -11,6 +11,7 @@ const config = {
         "plugin:@typescript-eslint/recommended-type-checked",
         "plugin:@typescript-eslint/stylistic-type-checked",
         "plugin:react/recommended",
+
         "plugin:react/jsx-runtime",
         "plugin:@tanstack/eslint-plugin-query/recommended",
         "plugin:react-hooks/recommended",
@@ -44,7 +45,7 @@ const config = {
         // project: 'tsconfig.json',
         tsconfigRootDir: __dirname,
     },
-    plugins: ["@typescript-eslint", "react", "react-hooks", "@tanstack/query"],
+    plugins: ["@typescript-eslint", "react", "react-hooks", "@tanstack/query", "prettier"],
     ignorePatterns: [".eslintrc.cjs", "*.config.ts", ".next/**/*", "node_modules/**/*"],
     rules: {
         "react/display-name": 2,

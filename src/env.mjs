@@ -1,20 +1,25 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
+// https://env.t3.gg/ for more information on how to use this package.
+
+// Create an environment that will validate and expose environment variables.
 export const env = createEnv({
+    // Define the environment variables that are shared between the client and the server.
     shared: {
         NODE_ENV: z.enum(["development", "test", "production"]),
     },
+    // Define the environment variables that are only used by the client.
     client: {
-        NODE_ENV: z.enum(["development", "test", "production"]),
         NEXT_PUBLIC_APP_URL: z.string().url(),
         NEXT_PUBLIC_API: z.string().url(),
     },
+    // Define the environment variables that are only used by the server.
     server: {
-        NODE_ENV: z.enum(["development", "test", "production"]),
         NEXT_PUBLIC_APP_URL: z.string().url(),
         NEXT_PUBLIC_API: z.string().url(),
     },
+    // Pass the values of the environment variables that are available on the server to the client.
     experimental__runtimeEnv: {
         NODE_ENV: process.env.NODE_ENV,
         NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,

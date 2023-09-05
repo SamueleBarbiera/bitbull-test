@@ -13,7 +13,7 @@ const nextConfig = {
     eslint: { ignoreDuringBuilds: true },
     typescript: { ignoreBuildErrors: true },
 
-    // for the deployment with docker
+    // for the deployment with docker withou pnpm start (npm start) we need to set the ENV manually (see Dockerfile for the commands to start up the container)
     output: "standalone",
 
     images: {

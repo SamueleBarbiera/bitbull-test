@@ -2,7 +2,7 @@
 
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-
+import { Balancer } from "react-wrap-balancer"
 
 interface PageHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
     as?: React.ElementType;
@@ -52,7 +52,7 @@ const descriptionVariants = cva("text-muted-foreground max-w-[750px]", {
     },
 });
 
-interface PageHeaderDescriptionProps extends React.ComponentProps<any>, VariantProps<typeof descriptionVariants> {}
+interface PageHeaderDescriptionProps extends React.ComponentProps<typeof Balancer>, VariantProps<typeof descriptionVariants> {}
 
 function PageHeaderDescription({ size, ...props }: PageHeaderDescriptionProps) {
     return <p className={cn(descriptionVariants({ size }))} {...props} />;

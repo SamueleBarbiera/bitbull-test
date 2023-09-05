@@ -1,7 +1,4 @@
-"use client";
-
 import * as React from "react";
-import type { Option } from "@/types";
 import { Command as CommandPrimitive } from "cmdk";
 import { X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -34,14 +31,14 @@ export function MultiSelect({
 
     const handleSelect = React.useCallback(
         (option: string) => {
-            setSelectedCategories((prev) => [...(prev ?? []), option]);
+            setSelectedCategories((prev) => [...prev, option]);
         },
         [setSelectedCategories],
     );
 
     const handleRemove = React.useCallback(
         (option: string) => {
-            setSelectedCategories((prev) => prev.filter((item) => item !== option) ?? []);
+            setSelectedCategories((prev) => prev.filter((item) => item !== option));
         },
         [setSelectedCategories],
     );
@@ -51,7 +48,7 @@ export function MultiSelect({
             if (!inputRef.current) return;
 
             if (event.key === "Backspace" || event.key === "Delete") {
-                setSelectedCategories((prev) => prev.slice(0, -1) ?? []);
+                setSelectedCategories((prev) => prev.slice(0, -1));
             }
 
             // Blur input on escape

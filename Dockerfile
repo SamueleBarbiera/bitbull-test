@@ -1,4 +1,4 @@
-# docker build -t nextjs-docker --build-arg NEXT_PUBLIC_CLIENTVAR=clientvar .
+# docker build -t nextjs-docker --build-arg  NEXT_PUBLIC_APP_URL="http://localhost:3000" NEXT_PUBLIC_API="https://4ilk3v7wbk.execute-api.eu-west-1.amazonaws.com/dev/"  .
 # docker run -p 3000:3000  nextjs-docker
 
 FROM --platform=linux/amd64 node:16-alpine3.17 AS deps
@@ -19,8 +19,8 @@ RUN \
 ##### BUILDER
 
 FROM --platform=linux/amd64 node:16-alpine3.17 AS builder
-ARG DATABASE_URL
-ARG NEXT_PUBLIC_CLIENTVAR
+ARG  NEXT_PUBLIC_APP_URL
+ARG  NEXT_PUBLIC_API
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .

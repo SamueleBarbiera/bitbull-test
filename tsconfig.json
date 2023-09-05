@@ -9,8 +9,6 @@
         "noUncheckedIndexedAccess": true,
         "esModuleInterop": true,
         "module": "esnext",
-        "moduleResolution": "bundler",
-        "resolveJsonModule": true,
         "isolatedModules": true,
         "jsx": "preserve",
         "incremental": true,
@@ -23,8 +21,12 @@
         "paths": {
             "@/*": ["./src/*"],
             "react": ["./node_modules/@types/react"]
-        }
+        },
+        "moduleResolution": "node",
+        "resolveJsonModule": true
     },
+    "rootDir": "./src",
+    "outDir": ".next",
     "include": [".eslintrc.cjs", "next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs", ".next/types/**/*.ts"],
     "exclude": ["node_modules", ".next"]
 }

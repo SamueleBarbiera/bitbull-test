@@ -7,15 +7,20 @@ import { env } from "@/env.mjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const url = new URL(env.NEXT_PUBLIC_APP_URL);
+
+const websiteTitle = "FakeCommerce";
+
+// this section is used to improve SEO and social sharing of the website on social media and search engines like Google
 export const metadata: Metadata = {
-    metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-    title: { default: "FakeCommerce", template: "%s | FakeCommerce" },
+    metadataBase: url,
+    title: { default: websiteTitle, template: "%s | FakeCommerce" },
     description: "An open source e-commerce FakeCommerce build with everything new in Next.js 13",
     openGraph: {
-        title: "FakeCommerce",
+        title: websiteTitle,
         description: "An open source e-commerce FakeCommerce build with everything new in Next.js 13",
-        url: new URL(env.NEXT_PUBLIC_APP_URL),
-        siteName: "FakeCommerce",
+        url: url,
+        siteName: websiteTitle,
         images: [
             {
                 url: "https://cdn.shopify.com/s/files/1/0569/3315/4889/products/dark-wall-bedside-table_925x_1e444a82-4f58-4f20-af70-052b4d8e171a.jpg?v=1650463482",
@@ -23,7 +28,7 @@ export const metadata: Metadata = {
                 height: 600,
             },
         ],
-        locale: "en-US",
+        locale: "it-IT",
         type: "website",
     },
 };
@@ -34,7 +39,7 @@ interface ILayout {
 
 export default function RootLayout({ children }: ILayout) {
     return (
-        <html lang="en">
+        <html lang="it">
             <body suppressHydrationWarning={true} className={inter.className}>
                 <Providers>{children}</Providers>
             </body>

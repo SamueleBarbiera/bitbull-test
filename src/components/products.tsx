@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { ProductCard } from "@/components/cards/product-card";
 import { MultiSelect } from "@/components/multi-select";
 import { HTMLAttributes, useEffect, useState } from "react";
 import { useCollectionListingFetch } from "@/services/products/collection.listing.query";
@@ -39,6 +38,7 @@ export function Products({ categories, ...props }: ProductsProps) {
 
     useEffect(() => {
         setSelectedCategories([searchParams.get("category") ?? selectedCategories[0]!]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchParams]);
 
     if (isLoading) {

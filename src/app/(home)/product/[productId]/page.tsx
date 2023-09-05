@@ -62,7 +62,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                         href: `/products?category=${product.handle}`,
                     },
                     {
-                        title: product.id.toString(),
+                        title: product.title,
                         href: `/product/${product.id}`,
                     },
                 ]}

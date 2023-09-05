@@ -32,14 +32,13 @@ export function SiteHeader() {
             },
             ...category.subcategories.map((subcategory) => ({
                 title: subcategory,
-                href: `products?category=${subcategory}`,
+                href: `/products?category=${subcategory}`,
                 description: subcategory,
             })),
         ],
     }));
 
     const siteConfigCategoriesAdded = [...siteConfig.mainNav, ...result];
-
 
     return (
         <header className="sticky top-0 z-40 w-full border-b bg-background">
