@@ -20,15 +20,4 @@ export const env = createEnv({
     },
     // converts the variable to a boolean if it's 1 or 0
     skipValidation: !!process.env.SKIP_ENV_VALIDATION,
-    onValidationError: (error) => {
-        console.error("❌ Invalid environment variables: ", error.flatten().fieldErrors);
-        throw new Error("❌ Invalid environment variables: ", error.flatten().fieldErrors);
-    },
-    // Called when server variables are accessed on the client.
-    onInvalidAccess: (variable) => {
-        console.error("❌ Invalid access variable: ", variable);
-        throw new Error("❌ Attempted to access a server-side environment variable on the client: ", variable);
-    },
-
-    isServer: typeof window === "undefined",
 });
