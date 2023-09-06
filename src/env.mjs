@@ -5,9 +5,6 @@ import { z } from "zod";
 
 // Create an environment that will validate and expose environment variables.
 export const env = createEnv({
-    shared: {
-        NODE_ENV: z.enum(["development", "test", "production"]),
-    },
     client: {
         NEXT_PUBLIC_APP_URL: z.string().url(),
         NEXT_PUBLIC_API: z.string().url(),
@@ -17,10 +14,10 @@ export const env = createEnv({
         NODE_ENV: z.enum(["development", "test", "production"]),
     },
     experimental__runtimeEnv: {
-        NODE_ENV: process.env.NODE_ENV,
         NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
         NEXT_PUBLIC_API: process.env.NEXT_PUBLIC_API,
     },
+    // converts the variable to a boolean if it's 1 or 0
     skipValidation: !!process.env.SKIP_ENV_VALIDATION,
     onValidationError: (error) => {
         console.error("❌ Invalid environment variables:", error.flatten().fieldErrors);

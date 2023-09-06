@@ -15,7 +15,10 @@ const nextConfig = {
 
     // for the deployment with docker withou pnpm start (npm start) we need to set the ENV manually (see Dockerfile for the commands to start up the container)
     output: "standalone",
-
+    experimental: {
+        typedRoutes: true,
+        pageEnv: true,
+    },
     images: {
         domains: ["https://cdn.shopify.com/", "cdn.shopify.com", "cdn.shopify.com/"],
     },
