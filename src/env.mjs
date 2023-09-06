@@ -9,14 +9,12 @@ export const env = createEnv({
         NODE_ENV: z.enum(["development", "test", "production"]),
     },
     client: {
-        NODE_ENV: z.enum(["development", "test", "production"]),
         NEXT_PUBLIC_APP_URL: z.string().url(),
         NEXT_PUBLIC_API: z.string().url(),
     },
     server: {
+        // This is a secret key that should be kept private.
         NODE_ENV: z.enum(["development", "test", "production"]),
-        NEXT_PUBLIC_APP_URL: z.string().url(),
-        NEXT_PUBLIC_API: z.string().url(),
     },
     experimental__runtimeEnv: {
         NODE_ENV: process.env.NODE_ENV,
@@ -26,7 +24,7 @@ export const env = createEnv({
     skipValidation: !!process.env.SKIP_ENV_VALIDATION,
     onValidationError: (error) => {
         console.error("❌ Invalid environment variables:", error.flatten().fieldErrors);
-        throw new Error("Invalid environment variables", error.flatten().fieldErrors);
+        throw new Error("❌ Invalid environment variables", error.flatten().fieldErrors);
     },
     // Called when server variables are accessed on the client.
     onInvalidAccess: (variable) => {

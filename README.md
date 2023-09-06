@@ -32,6 +32,7 @@ here's the official docs [AWS amplify deploat](https:### - aws.amazon.com/blogs/
 -   React
 -   Typescript (per costruire un progetto full typesafe dalle chiamate api al client)
 -   Tailwind (per l'ottimizazione del purge css e la facilità di sviluppo)
+-   t3/env per il check delle variabili di sviluppo se sono utilizzate nel client e se sono presenti sul deploy nella build
 
 ### - indica come hai gestito il problema del routing
 
@@ -48,6 +49,6 @@ here's the official docs [AWS amplify deploat](https:### - aws.amazon.com/blogs/
 
 ## - motiva le cose non fatte o che volevi che venissero fatte e quelle che non vanno (seo, client e rsc ecc)
 
--   SEO: ho implentato il seo con l'utilizzo dei rsc e dei metadata 
+-   SEO: ho implentato il seo con l'utilizzo dei rsc e dei metadata
 -   Client: in alcuni componenti ho utilizzato la metodologia per farvi vedere la differenza dei metodi per le chiamate all'api on il loading state ecc
--   Test: non ho implementato i Test ma ho riportato nella sezione della ui dei componenti di errore per problemi come errori dati dal client o dall'api 
+-   Test: non ho implementato i Test ma ho riportato nella sezione della ui dei componenti di errore per problemi come errori dati dal client o dall'api

@@ -11,7 +11,6 @@ const url = new URL(env.NEXT_PUBLIC_APP_URL);
 
 const websiteTitle = "FakeCommerce";
 
-
 // this section is used to improve SEO and social sharing of the website on social media and search engines like Google
 export const metadata: Metadata = {
     metadataBase: url,
