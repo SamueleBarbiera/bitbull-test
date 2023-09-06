@@ -5,7 +5,6 @@
  * - FooterItem
  * - MainNavItem
  * - SidebarNavItem
- * - StoredFile
  *
  * It also defines the following types:
  * - Option
@@ -27,8 +26,6 @@
  * The SidebarNavItem type is used to define the type of the sidebar navigation bar in the app.
  * It has a title and a list of items. Each item has a title, a link, and a description.
  *
- * The StoredFile interface is used to define the structure of the files stored in the app.
- * It has an id, a name, and a url.
  */
 
 export interface NavItem {
@@ -58,9 +55,3 @@ export interface FooterItem {
 export type MainNavItem = NavItem;
 
 export type SidebarNavItem = NavItem;
-
-export interface StoredFile {
-    id: string;
-    name: string;
-    url: string;
-}
