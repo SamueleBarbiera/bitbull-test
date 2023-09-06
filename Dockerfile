@@ -1,5 +1,6 @@
 # docker build -t nextjs-docker --build-arg  NEXT_PUBLIC_APP_URL="http://localhost:3000" NEXT_PUBLIC_API="https://4ilk3v7wbk.execute-api.eu-west-1.amazonaws.com/dev/"  .
 # docker run -p 3000:3000  nextjs-docker
+# oppure fatto con docker-compose up 
 
 FROM --platform=linux/amd64 node:16-alpine3.17 AS deps
 RUN apk add --no-cache libc6-compat openssl1.1-compat
