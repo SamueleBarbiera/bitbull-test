@@ -32,7 +32,7 @@
         "@tanstack/react-query-devtools": "^4.33.0",
         "@tanstack/react-query-next-experimental": "5.0.0-alpha.80",
         "autoprefixer": "10.4.15",
-        "axios": "^1.5.0",
+        "axios": "^1.6.0",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.0.0",
         "cmdk": "^0.2.0",
